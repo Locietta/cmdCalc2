@@ -1,10 +1,10 @@
 # simple handwritten makefile for practice
 
 vpath %.h ./include ./include/ADT
-vpath %.c ./src ./src/ADT
+vpath %.c ./src ./src/CDT
 
 CC       = gcc -Wall -O2
-SRC      = main.c $(wildcard ./src/*.c ./src/ADT/*.c) 
+SRC      = main.c $(wildcard ./src/*.c ./src/CDT/*.c) 
 OBJ      = $(patsubst %.c, %.o, $(SRC))
 INCS     = -I"./include" -I"./include/ADT"
 BIN      = test.exe
