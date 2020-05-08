@@ -56,14 +56,15 @@ struct stack_info {  // container
     int (*push)(stack *this, void *data);
 
     /**
-     * Function: destory
-     * Usage: mystack.destroy(&mystack);
+     * Function: clear
+     * Usage: mystack.clear(&mystack);
      * ---------------------------
      * This function free all the data in the stack.
-     * So the stack object can later be reinitialized with newStack()
+     * So the stack object can later be reused.
+     * or reinitialized with newStack()
      */
 
-    void (*destroy)(stack *this);
+    void (*clear)(stack *this);
 };
 
 /* Construction Function */

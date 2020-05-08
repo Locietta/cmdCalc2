@@ -22,6 +22,6 @@ int main(void) {
         mystack.pop(&mystack, &out);
         printf("%d ", out);
     }
-    mystack.destroy(&mystack);
+    mystack.clear(&mystack);
     return 0;
 }

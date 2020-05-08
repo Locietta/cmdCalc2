@@ -22,7 +22,7 @@ static const void *stackTop(stack *this);
 static int stackPop(stack *this, void *target);
 static int stackPush(stack *this, void *data);
 
-static void stackDestory(stack *this);
+static void stackClear(stack *this);
 
 /* Function implementations */
 
@@ -46,7 +46,7 @@ stack stackInit(size_t size) {
     newstack.top = stackTop;
     newstack.pop = stackPop;
     newstack.push = stackPush;
-    newstack.destroy = stackDestory;
+    newstack.clear = stackClear;
 
     return newstack;
 }
@@ -100,7 +100,7 @@ static int stackPush(stack *this, void *data) {
     return 0;
 }
 
-static void stackDestory(stack *this) {
+static void stackClear(stack *this) {
     while (this->head->prev != this->head) {
         List temp = this->head->prev;
         this->head->prev = this->head->prev->prev;
