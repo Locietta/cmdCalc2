@@ -1,4 +1,5 @@
 #include "stack.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -9,8 +10,6 @@ typedef struct Node { // Node of circular linked list
 
 /* Private Functions Prototypes */
 
-stack stackInit(size_t size);
-
 #define freeNode(node)    \
     do {                  \
         free(node->data); \
@@ -20,8 +19,8 @@ stack stackInit(size_t size);
 /* Public Functions Prototypes */
 
 static const void *stackTop(stack *this);
-static void stackPop(stack *this, void *target);
-static void stackPush(stack *this, void *data);
+static int stackPop(stack *this, void *target);
+static int stackPush(stack *this, void *data);
 
 static void stackDestory(stack *this);
 
@@ -40,7 +39,7 @@ stack stackInit(size_t size) {
         newstack.head->next = newstack.head;
     } else {
         puts("Stack initalization falied");
-        return;
+        return NULL_STACK;
     }
 
     newstack.size = 0;
@@ -53,26 +52,41 @@ stack stackInit(size_t size) {
 }
 
 static const void *stackTop(stack *this) {
-    return this->head->prev->data;
+    return (this->size) ? this->head->prev->data : NULL;
 }
 
-static void stackPop(stack *this, void *target) {
-    if (target) { // target != NULL
-        memmove(target, this->head->prev->data, this->elemSize);
-    }
+static int stackPop(stack *this, void *target) {
+    if (this->size) {
+        if (target) { // target != NULL
+            memmove(target, this->head->prev->data, this->elemSize);
+        }
 
-    if (this->size > 1) {
-        List temp = this->head->prev;
-        this->head->prev = this->head->prev->prev;
-        this->head->prev->next = this->head;
-        freeNode(temp);
+        if (this->size > 1) {
+            List temp = this->head->prev;
+            this->head->prev = this->head->prev->prev;
+            this->head->prev->next = this->head;
+            freeNode(temp);
+        }
+        --this->size;
+    } else {
+        // puts("Pop in an empty stack");
+        return 1;
     }
-    --this->size;
+    return 0;
 }
-static void stackPush(stack *this, void *data) {
+
+static int stackPush(stack *this, void *data) {
     if (this->size) {
         List newNode = (List) calloc(1, sizeof(Node));
+        if (newNode == NULL) {
+            // puts("new node allocation failed");
+            return 1;
+        }
         newNode->data = malloc(this->elemSize);
+        if (newNode->data == NULL) {
+            // puts("new datafield allocation failed");
+            return 2;
+        }
         memmove(newNode->data, data, this->elemSize);
 
         newNode->next = this->head;
@@ -83,6 +97,7 @@ static void stackPush(stack *this, void *data) {
         memmove(this->head->data, data, this->elemSize);
     }
     ++this->size;
+    return 0;
 }
 
 static void stackDestory(stack *this) {

@@ -6,29 +6,84 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <stddef.h>
+#define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL})
+
 typedef struct Node *List;
 
 typedef struct stack_info stack;
-struct stack_info { // container
-    List head;      // data
+struct stack_info {  // container
+    List head;       // data
     int size;        // the number of elements in the stack
-    size_t elemSize;    // size of elements in the stack
+    size_t elemSize; // size of elements in the stack
     /* Public Function Prototypes */
+
+    /**
+     * Function: top
+     * Usage: int n = *(int *) mystack.top(&mystack);
+     * ---------------------------
+     * This function return a pointer pointing to the last element
+     * of the stack. It will NOT delete the last element, and you 
+     * can't use this pointer as a lvalue.
+     */
+
     const void *(*top)(stack *this);
-    void (*pop)(stack *this, void *target);
-    void (*push)(stack *this, void *data);
+
+    /**
+     * Function: pop
+     * Usage: mystack.pop(&mystack, &buffer);
+     * ---------------------------
+     * This function copy the last element into the datafield pointed
+     * by buffer. And then DELETE the last element in the stack.
+     * In case of empty stack, it returns a non-zero value (1),
+     * if everything is OK, it shall return 0
+     */
+
+    int (*pop)(stack *this, void *target);
+
+    /**
+     * Function: push
+     * Usage: mystack.push(&mystack, &input);
+     * ---------------------------
+     * This function COPY the data pointed by the pointer into
+     * a new element in the stack. Later, when variable "input" changes
+     * its value, the element in stack will NOT change.
+     * if everything is OK, it shall return 0, 
+     * otherwise, it returns a non-zero value indicating an error. 
+     */
+
+    int (*push)(stack *this, void *data);
+
+    /**
+     * Function: destory
+     * Usage: mystack.destroy(&mystack);
+     * ---------------------------
+     * This function free all the data in the stack.
+     * So the stack object can later be reinitialized with newStack()
+     */
+
     void (*destroy)(stack *this);
 };
 
 /* Construction Function */
 
 /**
+ * Function: stackInit
+ * Usage: you should use newStack() instead.
+ * ---------------------------
+ * This function initialize a stack.
+ */
+
+stack stackInit(size_t size);
+
+/**
  * Function: newStack
  * Usage: mystack = newStack(double);
  * ---------------------------
- * This function initialize a stack with given type.
+ * This function initialize a new stack with given type.
+ * In case of failure to build a stack, it returns a NULL_STACK
  */
 
-#define newStack(type); stackInit(sizeof(type));
+#define newStack(type) stackInit(sizeof(type))
 
 #endif // (!defined OPSTACK_H)
