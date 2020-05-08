@@ -16,6 +16,7 @@ struct stack_info {  // container
     List head;       // data
     int size;        // the number of elements in the stack
     size_t elemSize; // size of elements in the stack
+
     /* Public Function Prototypes */
 
     /**
@@ -86,4 +87,4 @@ stack stackInit(size_t size);
 
 #define newStack(type) stackInit(sizeof(type))
 
-#endif // (!defined OPSTACK_H)
+#endif // (!defined STACK_H)
