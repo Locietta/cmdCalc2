@@ -16,6 +16,7 @@
  * Constants -- colors
  * ------------------------
  * different kinds of color
+ * windows console use LIGHTGREY as its default color
  */
 
 typedef enum { BLACK,
@@ -25,7 +26,7 @@ typedef enum { BLACK,
                RED,
                PURPLE,
                BROWN,
-               LIGHTGRAY,
+               LIGHTGRAY, // default color
                DRAKGREY,
                LIGHTBLUE,
                LIGHTGREEN,
@@ -37,7 +38,7 @@ typedef enum { BLACK,
 
 /**
  * Macro: setColor
- * Usage: setColor(RED, 1);
+ * Usage: setColor(RED);
  * ---------------------------
  * set the default font color to what you want 
  */
