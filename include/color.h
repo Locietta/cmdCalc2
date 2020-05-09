@@ -26,7 +26,7 @@ typedef enum { BLACK,
                RED,
                PURPLE,
                BROWN,
-               LIGHTGRAY, // default color
+               LIGHTGRAY, // console default color
                DRAKGREY,
                LIGHTBLUE,
                LIGHTGREEN,
