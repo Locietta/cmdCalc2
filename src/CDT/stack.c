@@ -56,6 +56,10 @@ stack stackInit(size_t size) {
     return newstack;
 }
 
+static int stackEmpty(stack *this) {
+    return !this->size;
+}
+
 static const void *stackTop(stack *this) {
     return (this->size) ? this->head->prev->data : NULL;
 }
@@ -115,6 +119,3 @@ static void stackClear(stack *this) {
     freeNode(this->head);
 }
 
-static int stackEmpty(stack *this) {
-    return !this->size;
-}
