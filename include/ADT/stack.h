@@ -7,7 +7,7 @@
 #define STACK_H
 
 #include <stddef.h>
-#define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL})
+#define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL})
 
 typedef struct Node *List;
 
@@ -69,12 +69,26 @@ struct stack_info {  // container
      * Function: clear
      * Usage: mystack.clear(&mystack);
      * ---------------------------
-     * This function free all the data in the stack.
+     * This function clear all the data in the stack.
      * So the stack object can later be reused.
-     * or reinitialized with newStack()
+     * If you wanna dispose this stack, DON NOT use it,
+     * use destory() instead.
+     * (Or you'll get a leakage)
      */
 
     void (*clear)(stack *this);
+
+    /**
+     * Function: destory
+     * Usage: mystack.destory(&mystack);
+     * ---------------------------
+     * This function free all the data in the stack.
+     * You have to reinitialize it with newStack() if you
+     * wanna use it again.
+     * When you want to dispose a stack, use destory() instead of clear()
+     */
+
+    void (*destory)(stack *this);
 };
 
 /* Construction Function */

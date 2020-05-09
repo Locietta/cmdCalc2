@@ -18,6 +18,8 @@ typedef struct Node { // Node of circular linked list
 
 /* Public Functions Prototypes */
 
+static int stackEmpty(stack *this);
+
 static const void *stackTop(stack *this);
 
 static int stackPop(stack *this, void *target);
@@ -26,7 +28,7 @@ static int stackPush(stack *this, void *data);
 
 static void stackClear(stack *this);
 
-static int stackEmpty(stack *this);
+static void stackDestory(stack *this);
 
 /* Function implementations */
 
@@ -52,6 +54,7 @@ stack stackInit(size_t size) {
     newstack.pop = stackPop;
     newstack.push = stackPush;
     newstack.clear = stackClear;
+    newstack.destory = stackDestory;
 
     return newstack;
 }
@@ -116,6 +119,15 @@ static void stackClear(stack *this) {
         this->head->prev->next = this->head;
         freeNode(temp);
     }
-    freeNode(this->head);
+    this->size = 0;
 }
 
+static void stackDestory(stack *this) {
+    while (this->head->prev != this->head) {
+        List temp = this->head->prev;
+        this->head->prev = this->head->prev->prev;
+        this->head->prev->next = this->head;
+        freeNode(temp);
+    }
+    freeNode(this->head);
+}
