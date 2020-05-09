@@ -7,7 +7,7 @@
 #define QUEUE_H
 
 #include <stddef.h>
-#define NULL_QUEUE ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL})
+#define NULL_QUEUE ((queue){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})
 
 typedef struct Node *List;
 
@@ -19,29 +19,24 @@ struct queue_info {  // container
 
     /* Public Function Prototypes */
 
+    int (*empty)(queue *this);
 
+    const void *(*front)(queue *this);
 
-    const void *(*top)(queue *this);
-
-
-    int (*pop)(queue *this, void *target);
-
-
+    const void *(*back)(queue *this);
 
     int (*push)(queue *this, void *data);
 
+    int (*pop)(queue *this, void *target);
 
+    void (*clear)(queue *this);
 
-    void (*destroy)(queue *this);
+    void (*destory)(queue *this);
 };
 
 /* Construction Function */
 
-
-
 queue queueInit(size_t size);
-
-
 
 #define newQueue(type) queueInit(sizeof(type))
 
