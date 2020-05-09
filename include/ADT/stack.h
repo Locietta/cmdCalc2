@@ -20,6 +20,16 @@ struct stack_info {  // container
     /* Public Function Prototypes */
 
     /**
+     * Function: empty
+     * Usage: mystack.empty(&mystack);
+     * ---------------------------
+     * This function returns 1 if the stack is empty,
+     * otherwise, returns 0;
+     */
+
+    int (*empty)(stack *this);
+
+    /**
      * Function: top
      * Usage: int n = *(int *) mystack.top(&mystack);
      * ---------------------------
@@ -65,16 +75,6 @@ struct stack_info {  // container
      */
 
     void (*clear)(stack *this);
-
-    /**
-     * Function: empty
-     * Usage: mystack.empty(&mystack);
-     * ---------------------------
-     * This function returns 1 if the stack is empty,
-     * otherwise, returns 0;
-     */
-
-    int (*empty)(stack *this);
 };
 
 /* Construction Function */
