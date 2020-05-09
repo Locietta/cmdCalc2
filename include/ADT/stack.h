@@ -45,7 +45,7 @@ struct stack_info {  // container
      * Usage: mystack.pop(&mystack, &buffer);
      * ---------------------------
      * This function copy the last element into the datafield pointed
-     * by buffer. And then DELETE the last element in the stack.
+     * by &buffer. And then DELETE the last element in the stack.
      * In case of empty stack, it returns a non-zero value (1),
      * if everything is OK, it shall return 0
      */
@@ -56,7 +56,7 @@ struct stack_info {  // container
      * Function: push
      * Usage: mystack.push(&mystack, &input);
      * ---------------------------
-     * This function COPY the data pointed by the pointer into
+     * This function COPY the data pointed by a pointer into
      * a new element in the stack. Later, when variable "input" changes
      * its value, the element in stack will NOT change.
      * if everything is OK, it shall return 0, 
