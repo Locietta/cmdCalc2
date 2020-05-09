@@ -7,7 +7,7 @@
 #define STACK_H
 
 #include <stddef.h>
-#define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL})
+#define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL})
 
 typedef struct Node *List;
 
@@ -65,6 +65,16 @@ struct stack_info {  // container
      */
 
     void (*clear)(stack *this);
+
+    /**
+     * Function: empty
+     * Usage: mystack.empty(&mystack);
+     * ---------------------------
+     * This function returns 1 if the stack is empty,
+     * otherwise, returns 0;
+     */
+
+    int (*empty)(stack *this);
 };
 
 /* Construction Function */
