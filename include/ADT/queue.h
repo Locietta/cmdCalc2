@@ -1,6 +1,9 @@
 /**
- * author: @Locietta
- * This header defines an abstract stack
+ * File: queue.h
+ * -------------------------------------
+ * author: @Locietta finished on 2020.5.9
+ * (defined QUEUE_H)
+ * This header defines an abstract queue
  */
 
 #ifndef QUEUE_H
@@ -14,8 +17,8 @@ typedef struct Node *List;
 typedef struct queue_info queue;
 struct queue_info {  // container
     List head;       // data
-    int size;        // the number of elements in the stack
-    size_t elemSize; // size of elements in the stack
+    int size;        // the number of elements in the queue
+    size_t elemSize; // size of elements in the queue
 
     /* Public Function Prototypes */
 
@@ -114,7 +117,7 @@ struct queue_info {  // container
 queue queueInit(size_t size);
 
 /**
- * Function: newQueue
+ * Macro: newQueue
  * Usage: myqueue = newQueue(double);
  * ---------------------------
  * This function initialize a new queue with given type.
@@ -123,4 +126,4 @@ queue queueInit(size_t size);
 
 #define newQueue(type) queueInit(sizeof(type))
 
-#endif // (!defined Queue_H)
+#endif // (!defined QUEUE_H)

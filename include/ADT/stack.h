@@ -1,5 +1,8 @@
 /**
- * author: @Locietta
+ * File: stack.h
+ * -------------------------------------
+ * author: @Locietta finished on 2020.5.8
+ * (defined STACK_H)
  * This header defines an abstract stack
  */
 
@@ -103,7 +106,7 @@ struct stack_info {  // container
 stack stackInit(size_t size);
 
 /**
- * Function: newStack
+ * Macro: newStack
  * Usage: mystack = newStack(double);
  * ---------------------------
  * This function initialize a new stack with given type.
