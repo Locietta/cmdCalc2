@@ -46,7 +46,7 @@ typedef enum { BLACK,
 #define setColor(color) SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color)
 
 /**
- * Macro: colorPrintf
+ * Function: colorPrintf
  * Usage: colorPrintf(RED, "Try my magical colorPrintf() %d\n", 233);
  * ---------------------------
  * This function prints format string in given color
