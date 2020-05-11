@@ -5,16 +5,15 @@
 
 static int bracketMatched(const char *expr) {
     stack brac_stack = newStack(char);
-    const char *str = expr;
     char buf;
-    while (*str != '\0') {
-        switch (*str) {
+    while (*expr != '\0') {
+        switch (*expr) {
         case '{':
         case '[':
-        case '(': brac_stack.push(&brac_stack, str); break;
+        case '(': brac_stack.push(&brac_stack, expr); break;
         case '}':
         case ']':
-            if (brac_stack.pop(&brac_stack, &buf) == POP_IN_EMPTY_STACK || buf + 2 != *str) {
+            if (brac_stack.pop(&brac_stack, &buf) == POP_IN_EMPTY_STACK || buf + 2 != *expr) {
                 brac_stack.destory(&brac_stack);
                 return 0;
             }
@@ -26,7 +25,7 @@ static int bracketMatched(const char *expr) {
             }
             break;
         }
-        ++str;
+        ++expr;
     }
     if (brac_stack.empty(&brac_stack)) {
         brac_stack.destory(&brac_stack);
