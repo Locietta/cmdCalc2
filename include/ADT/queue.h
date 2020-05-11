@@ -11,6 +11,7 @@
 
 #include <stddef.h>
 #define NULL_QUEUE ((queue){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})
+#define POP_IN_EMPTY_QUEUE 1
 
 typedef struct Node *List;
 
@@ -65,7 +66,7 @@ struct queue_info {  // container
      * otherwise, it returns a non-zero value indicating an error. 
      */
 
-    int (*push)(queue *this, void *data);
+    int (*push)(queue *this, const void *data);
 
     /**
      * Function: pop
@@ -73,7 +74,7 @@ struct queue_info {  // container
      * ---------------------------
      * This function copy the first element into the datafield pointed
      * by &buffer. And then DELETE the first element in the queue.
-     * In case of empty queue, it returns a non-zero value (1),
+     * In case of empty queue, it returns a non-zero value (POP_IN_EMPTY_QUEUE),
      * if everything is OK, it shall return 0
      */
 

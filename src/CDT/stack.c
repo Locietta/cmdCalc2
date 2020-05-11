@@ -24,7 +24,7 @@ static const void *stackTop(stack *this);
 
 static int stackPop(stack *this, void *target);
 
-static int stackPush(stack *this, void *data);
+static int stackPush(stack *this, const void *data);
 
 static void stackClear(stack *this);
 
@@ -82,12 +82,12 @@ static int stackPop(stack *this, void *target) {
         --this->size;
     } else {
         // puts("Pop in an empty stack");
-        return 1;
+        return POP_IN_EMPTY_STACK;
     }
     return 0;
 }
 
-static int stackPush(stack *this, void *data) {
+static int stackPush(stack *this, const void *data) {
     if (this->size) {
         List newNode = (List) calloc(1, sizeof(Node));
         if (newNode == NULL) {

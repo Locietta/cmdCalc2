@@ -11,6 +11,7 @@
 
 #include <stddef.h>
 #define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL})
+#define POP_IN_EMPTY_STACK 1
 
 typedef struct Node *List;
 
@@ -49,7 +50,7 @@ struct stack_info {  // container
      * ---------------------------
      * This function copy the last element into the datafield pointed
      * by &buffer. And then DELETE the last element in the stack.
-     * In case of empty stack, it returns a non-zero value (1),
+     * In case of empty stack, it returns a non-zero value (POP_IN_EMPTY_STACK),
      * if everything is OK, it shall return 0
      */
 
@@ -66,7 +67,7 @@ struct stack_info {  // container
      * otherwise, it returns a non-zero value indicating an error. 
      */
 
-    int (*push)(stack *this, void *data);
+    int (*push)(stack *this, const void *data);
 
     /**
      * Function: clear

@@ -24,7 +24,7 @@ static const void *queueFront(queue *this);
 
 static const void *queueBack(queue *this);
 
-static int queuePush(queue *this, void *data);
+static int queuePush(queue *this, const void *data);
 
 static int queuePop(queue *this, void *target);
 
@@ -74,7 +74,7 @@ static const void *queueBack(queue *this) {
     return (this->size) ? this->head->prev->data : NULL;
 }
 
-static int queuePush(queue *this, void *data) {
+static int queuePush(queue *this, const void *data) {
     if (this->size) {
         List newNode = (List) calloc(1, sizeof(Node));
         if (newNode == NULL) {
@@ -115,7 +115,7 @@ static int queuePop(queue *this, void *target) {
         --this->size;
     } else {
         // puts("Pop in an empty queue");
-        return 1;
+        return POP_IN_EMPTY_QUEUE;
     }
     return 0;
 }
