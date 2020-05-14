@@ -9,25 +9,15 @@
 #ifndef CALC_H
 #define CALC_H
 
-#include "stack.h"
-#include "queue.h"
-#include <ctype.h>
-
 /**
- * Data Structure -- opNode
- * Usage: queue exprQueue = newQueue(opNode);
- * -------------------------------------------
- * store operators and oprands(numbers)
- * opNode::type indicate the type it store (operator or oprand)
+ * Function: Calc
+ * Usage: Calc(expr, &result);
+ * ---------------------------
+ * This function calculate the expression given by 'expr'
+ * its result will be put into the 'result'
+ * If everything is OK, it shall return 0
+ * Otherwise, it returns a non-zero value indicating errors
  */
-
-typedef struct opNode {
-    int type;  // 0: op, 1: num
-    union { // C11 std
-        char op[4];
-        double num;
-    };
-} opNode;
 
 int Calc(char *expr, double *result);
 
