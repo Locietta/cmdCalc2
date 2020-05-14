@@ -19,6 +19,8 @@
  * windows console use LIGHTGREY as its default color
  */
 
+#define DEFAULT LIGHTGRAY
+
 typedef enum { BLACK,
                BLUE,
                GREEN,
