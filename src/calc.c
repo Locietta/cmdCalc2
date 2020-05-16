@@ -25,6 +25,15 @@ enum { TYPE_OP,
        TYPE_NUM };
 
 /**
+ * Constants -- LEFT RIGHT
+ * -------------------------------------------
+ * identifier for op_associate() 
+ */
+
+enum { LEFT,
+       RIGHT };
+
+/**
  * Data Structure -- opNode
  * Usage: queue exprQueue = newQueue(opNode);
  * -------------------------------------------
@@ -46,9 +55,17 @@ static int op_prior(const char *op);
 
 static int op_argnum(const char *op);
 
+static int op_associate(const char *op);
+
+
+
 static int calcSingle(char *op, double num[], double *result);
 
 static int exprAnalyzer(const char *expr, queue *infixRes);
+
+static int convert2Postfix(queue infix, );
+
+
 
 static int bracketMatched(const char *expr);
 
@@ -68,7 +85,6 @@ static int isFunction(char *name);
 
 #define isNum(c) (isdigit(c) || c == '.')
 
-#
 
 /* Function implementations */
 
@@ -238,6 +254,8 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
             return 4;
         }
     }
+    *infixRes = infix;
+    return 0;
 }
 
 static char *numberFetcher(const char *expr, double *result) {
