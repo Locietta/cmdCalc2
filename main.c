@@ -1,8 +1,7 @@
-#include "stack.h"
-#include "queue.h"
 #include "color.h"
 #include "calcio.h"
 #include "calc.h"
+#include <windows.h>
 #include <stdio.h>
 
 void titleLog(void);
@@ -20,7 +19,7 @@ int main(void) {
         }
         colorPrintf(PURPLE, "Input > ");
     }
-    colorPrintf(CYAN, "See you ~");
+    colorPrintf(YELLOW, "See you ~");
     Sleep(1000); // wait for a second ( 
     return 0;
 }
@@ -31,7 +30,7 @@ void titleLog(void) {
     printf(".\nJust type expresions freely, and we'll calculate it.\nAnd... if you wanna a ");
     colorPrintf(YELLOW, "quit, ");
     printf("type in ");
-    colorPrintf(LIGHTRED, "\'^z\' ");
+    colorPrintf(LIGHTRED, "^z ");
     printf("(");
     colorPrintf(LIGHTRED, "ctrl ");colorPrintf(YELLOW, "+ ");colorPrintf(LIGHTRED, "z");
     printf(") and the program would be ended.\n");
