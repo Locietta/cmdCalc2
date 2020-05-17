@@ -41,10 +41,10 @@ int main(void) {
     myqueue.pop(&myqueue, NULL);
     while (myqueue.size) {
         myqueue.pop(&myqueue, &out);
-        printf("%g \n", out);
+        printf("%g ", out);
     }
     if (myqueue.empty(&myqueue)) {
-        puts("Now the queue is empty");
+        puts("\nNow the queue is empty");
     }
     if (POP_IN_EMPTY_QUEUE == myqueue.pop(&myqueue, NULL)) {
         puts("pop in empty queue");

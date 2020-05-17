@@ -37,10 +37,10 @@ int main(void) {
     mystack.pop(&mystack, NULL);
     while (mystack.size) {
         mystack.pop(&mystack, &out);
-        printf("%d \n", out);
+        printf("%d ", out);
     }
     if (mystack.empty(&mystack)) {
-        puts("Now the stack is empty");
+        puts("\nNow the stack is empty");
     }
     if (POP_IN_EMPTY_STACK == mystack.pop(&mystack, NULL)) {
         puts("pop in empty stack");
