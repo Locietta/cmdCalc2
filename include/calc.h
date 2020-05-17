@@ -9,13 +9,7 @@
 #ifndef CALC_H
 #define CALC_H
 
-/**
- * Constants -- MAX_FUNC_NAME
- * -------------------------------------------
- * defines the maximum function name length
- */
-
-#define MAX_FUNC_NAME 7
+#include "error.h"
 
 /**
  * Function: Calc
@@ -27,7 +21,7 @@
  * Otherwise, it returns a non-zero value indicating errors
  */
 
-int Calc(char *expr, double *result);
+ERROR_INFO Calc(char *expr, double *result);
 
 
 #endif // (!defined CALC_H)
