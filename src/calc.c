@@ -93,7 +93,20 @@ static int isFunction(char *name);
 
 int Calc(char *expr, double *result) {
     // TODO
-    return 0;
+    queue infix, postfix;
+    int ret = 0;
+    if (*expr) {
+        if ((ret = exprAnalyzer(expr, &infix))) {
+            return ret;
+        }
+        if ((ret = convert2Postfix(infix, &postfix))) {
+            return ret;
+        }
+        if ((ret = calcPostfix(postfix, result))) {
+            return ret;
+        }
+    }
+    return ret;
 }
 
 /* Private Functions */
@@ -404,7 +417,6 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
 static int calcPostfix(queue postfix, double *result) {
     stack calcstack = newStack(double);
     opNode tempNode;
-    int ret = 0;
     while (postfix.pop(&postfix, &tempNode) != POP_IN_EMPTY_QUEUE) {
         if (tempNode.type == TYPE_NUM) {
             calcstack.push(&calcstack, &tempNode.num);
@@ -422,6 +434,7 @@ static int calcPostfix(queue postfix, double *result) {
                 }
             }
             double temp;
+            int ret = 0;
             if ((ret = calcSingle(tempNode.op, num, &temp))) {
                 postfix.destory(&postfix);
                 calcstack.destory(&calcstack);
@@ -441,5 +454,5 @@ static int calcPostfix(queue postfix, double *result) {
     }
     postfix.destory(&postfix);
     calcstack.destory(&calcstack);
-    return ret;
+    return 0;
 }
