@@ -49,23 +49,31 @@ typedef struct opNode {
 
 /* Private Function Prototypes */
 
+/* 1 -- overall steps */
+
+static int exprAnalyzer(const char *expr, queue *infixRes);
+
+static int convert2Postfix(queue infix, queue *postfixRes);
+
+/* 2 -- operator attributes */
+
 static int op_prior(const char *op);
 
 static int op_argnum(const char *op);
 
 static int op_associate(const char *op);
 
+/* 3 -- detailed procedures */
+
 static int calcSingle(char *op, double num[], double *result);
-
-static int exprAnalyzer(const char *expr, queue *infixRes);
-
-static int convert2Postfix(queue infix, queue *postfixRes);
 
 static int bracketMatched(const char *expr);
 
 static const char *numberFetcher(const char *expr, double *result);
 
 static const char *functionFetcher(const char *expr, char *funcName);
+
+/* 4 -- type judge */
 
 static int isFunction(char *name);
 
@@ -386,7 +394,8 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
         postfix.push(&postfix, &tempop);
     }
     opstack.destory(&opstack);
-    
+
     *postfixRes = postfix;
     return 0;
 }
+
