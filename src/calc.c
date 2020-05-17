@@ -1,7 +1,7 @@
 /**
  * File: calc.c
  * -------------------------------------
- * author: @Locietta @程国斐 finished on 2020.5.17
+ * author: @Locietta @程国斐 @赵萌 finished on 2020.5.17
  * This source file implements the header calc.h
  */
 
