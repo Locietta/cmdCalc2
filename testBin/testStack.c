@@ -33,10 +33,18 @@ int main(void) {
     }
     printf("Top> ");
     printf("%d\n", *(int *) mystack.top(&mystack));
-    printf("Pop 3> ");
+    printf("Pop NULL Pop 2> ");
+    mystack.pop(&mystack, NULL);
     while (mystack.size) {
         mystack.pop(&mystack, &out);
-        printf("%d ", out);
+        printf("%g ", out);
     }
+    if (mystack.empty(&mystack)) {
+        puts("Now the stack is empty");
+    }
+    if (POP_IN_EMPTY_STACK == mystack.pop(&mystack, NULL)) {
+        puts("pop in empty stack");
+    }
+    mystack.destory(&mystack);
     return 0;
 }

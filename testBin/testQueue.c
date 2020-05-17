@@ -37,10 +37,17 @@ int main(void) {
     printf("%g\n", *(double *) myqueue.front(&myqueue));
     printf("Back> ");
     printf("%g\n", *(double *) myqueue.back(&myqueue));
-    printf("Pop 3> ");
+    printf("Pop NULL Pop 2> ");
+    myqueue.pop(&myqueue, NULL);
     while (myqueue.size) {
         myqueue.pop(&myqueue, &out);
         printf("%g ", out);
+    }
+    if (myqueue.empty(&myqueue)) {
+        puts("Now the queue is empty");
+    }
+    if (POP_IN_EMPTY_QUEUE == myqueue.pop(&myqueue, NULL)) {
+        puts("pop in empty queue");
     }
     myqueue.destory(&myqueue);
     return 0;
