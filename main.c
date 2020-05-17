@@ -16,15 +16,15 @@ int main(void) {
     while (Expr_gets(expr, 100)) {
         ERROR_INFO err;
         if (*expr && (err = Calc(expr, &result)).error == NOT_ERROR) {
-            colorPrintf(PINK, "result: ");
+            colorPrintf(GREEN, "result: ");
             colorPrintf(LIGHTCYAN, "%g\n", result);
-        } else {
+        } else if (err.error) {
             ErrReport(err, expr);
         }
         colorPrintf(PURPLE, "Input > ");
     }
     colorPrintf(YELLOW, "See you ~");
-    Sleep(1000); // wait for a second ( 
+    Sleep(1000); // wait for a second (
     return 0;
 }
 
@@ -36,6 +36,8 @@ void titleLog(void) {
     printf("type in ");
     colorPrintf(LIGHTRED, "^z ");
     printf("(");
-    colorPrintf(LIGHTRED, "ctrl ");colorPrintf(YELLOW, "+ ");colorPrintf(LIGHTRED, "z");
+    colorPrintf(LIGHTRED, "ctrl ");
+    colorPrintf(YELLOW, "+ ");
+    colorPrintf(LIGHTRED, "z");
     printf(") and the program would be ended.\n");
 }
