@@ -1,6 +1,7 @@
 #include "color.h"
 #include "calcio.h"
 #include "calc.h"
+#include "error.h"
 #include <windows.h>
 #include <stdio.h>
 
@@ -13,9 +14,12 @@ int main(void) {
     titleLog();
     colorPrintf(PURPLE, "Input > ");
     while (Expr_gets(expr, 100)) {
-        if (*expr && !Calc(expr, &result)) {
+        ERROR_INFO err;
+        if (*expr && (err = Calc(expr, &result)).error == NOT_ERROR) {
             colorPrintf(PINK, "result: ");
             colorPrintf(LIGHTCYAN, "%g\n", result);
+        } else {
+            ErrReport(err, expr);
         }
         colorPrintf(PURPLE, "Input > ");
     }

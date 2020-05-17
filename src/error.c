@@ -36,8 +36,8 @@ void ErrReport(ERROR_INFO err, char *expr) {
     }
     colorPrintf(RED, "error: ");
     printf("Can't calculate illegal expression ");
-    colorPrintf(YELLOW, expr);
-    putchar('\n');
+    colorPrintf(YELLOW, "\"%s\"", expr);
+    printf("\n");
     switch (err.error) {
     case NOT_ERROR: break;
     case ERROR_UNMATCHED_BRAC: ErrReport_unmatchedBrac(); break;
