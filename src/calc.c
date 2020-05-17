@@ -237,6 +237,7 @@ static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes) {
                 // puts("invalid number");
                 infix.destory(&infix);
                 ERROR_INFO ret = {ERROR_INVALID_NUMBER};
+                ret.number = (char *) malloc((MAX_NUMBER + 1) * sizeof(char));
                 strcpy(ret.number, numChar);
                 return ret;
             }
@@ -248,6 +249,7 @@ static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes) {
                 // puts("unknown function name");
                 infix.destory(&infix);
                 ERROR_INFO ret = {ERROR_UNKNOWN_FUNC_NAME};
+                ret.funcName = (char *) malloc((MAX_FUNC_NAME + 1) * sizeof(char));
                 strcpy(ret.funcName, tempNode.op);
                 return ret;
             }
@@ -272,7 +274,7 @@ static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes) {
 }
 
 static const char *numberFetcher(const char *expr, double *result, char *number) {
-    char buf[MAX_NUMBER + 1], *numstr = buf;
+    char buf[MAX_NUMBER + 1], *numstr = buf, error = 0;
     const char *start = expr;
     if (*expr == '+' || *expr == '-') {
         *(numstr++) = *(expr++);
@@ -284,17 +286,16 @@ static const char *numberFetcher(const char *expr, double *result, char *number)
         if (isdigit(*expr)) {
             *(numstr++) = *(expr++);
         } else if (expr != start) { // && *expr == '.'
-            char *temp = numstr - 1, flag = 1;
+            char *temp = numstr - 1, flag = 0;
             while (temp >= buf) {
                 if (*(temp--) == '.') {
-                    flag = 0;
+                    flag = 1;
                     break;
                 }
             }
+            *(numstr++) = *(expr++);
             if (flag) {
-                *(numstr++) = *(expr++);
-            } else {
-                return NULL; // one number with two (or more) '.' e.g. 1.23.5
+                error = 1; // one number with two (or more) '.' e.g. 1.23.5
             }
         } else {
             *(numstr++) = *(expr++);
@@ -303,7 +304,7 @@ static const char *numberFetcher(const char *expr, double *result, char *number)
     *numstr = '\0';
     strcpy(number, buf);
     sscanf(buf, "%lf", result);
-    return expr;
+    return error ? NULL : expr;
 }
 
 static int isFunction(char *name) {
@@ -316,8 +317,8 @@ static const char *functionFetcher(const char *expr, char *funcName) {
         *(funcstr++) = *(expr++);
     }
     *funcstr = '\0';
+    strcpy(funcName, buf);
     if (isFunction(buf)) {
-        strcpy(funcName, buf);
         return expr;
     } else {
         return NULL;

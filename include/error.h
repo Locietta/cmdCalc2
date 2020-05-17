@@ -43,14 +43,17 @@ typedef enum ERROR_FLAG {
 
 typedef struct ERROR_INFO {
     ERROR_FLAG error;
-    union {
-        char funcName[MAX_FUNC_NAME + 1];
-        char number[MAX_NUMBER];
-        char op;
-    };
+
+    char *funcName;
+    char *number;
+    char op;
+
 } ERROR_INFO;
 
-#define SUCCESS (ERROR_INFO){NOT_ERROR}
+#define SUCCESS                                                                                                                                                                                        \
+    (ERROR_INFO) {                                                                                                                                                                                     \
+        NOT_ERROR                                                                                                                                                                                      \
+    }
 
 /**
  * Function: ErrReport

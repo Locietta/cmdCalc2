@@ -34,7 +34,7 @@ void ErrReport(ERROR_INFO err, char *expr) {
     if (err.error == NOT_ERROR) {
         return;
     }
-    colorPrintf(RED, "error: ");
+    colorPrintf(RED, "error : ");
     printf("Can't calculate illegal expression ");
     colorPrintf(YELLOW, "\"%s\"", expr);
     printf("\n");
@@ -49,59 +49,61 @@ void ErrReport(ERROR_INFO err, char *expr) {
     case ERROR_DIVIDE_ZERO: ErrReport_divideByZero(); break;
     case ERROR_MOD_NONINTERGER: ErrReport_nonIntegerMod(); break;
     }
-    puts("     ? Try again with a proper expression!");
+    puts("      ? Try again with a proper expression!");
 }
 
 /* Private Function */
 
 static void ErrReport_unmatchedBrac(void) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "unmatched brackets");
     printf(" in the expression...\n");
 }
 
 static void ErrReport_invalidNumber(char *number) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "invalid number ");
-    colorPrintf(YELLOW, number);
+    colorPrintf(YELLOW, "%s", number);
     putchar('\n');
+    free(number);
 }
 
 static void ErrReport_unknownFuncName(char *funcName) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "unknown function name ");
     colorPrintf(YELLOW, funcName);
     putchar('\n');
+    free(funcName);
 }
 
 static void ErrReport_unknownOperator(char op) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "unknown function name ");
     colorPrintf(YELLOW, "%c", op);
     putchar('\n');
 }
 
 static void ErrReport_wrongSpliterPos(void) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "wrong position");
     printf(" for the function argument spliter");
     colorPrintf(YELLOW, " ,\n");
 }
 
 static void ErrReport_wrongOprandNum(void) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "oprand number unmatched");
     printf(" in the expression...\n");
 }
 
 static void ErrReport_divideByZero(void) {
-    printf("     ? ");
+    printf("      ? ");
     colorPrintf(RED, "0 as a divisor");
     printf(" in the expression...\n");
 }
 
 static void ErrReport_nonIntegerMod(void) {
-    printf("     ? try to do ");
+    printf("      ? try to do ");
     colorPrintf(RED, "modular");
     printf(" calculation between ");
     colorPrintf(RED, "non-integers");
