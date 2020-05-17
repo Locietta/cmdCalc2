@@ -1,3 +1,11 @@
+/**
+ * File: calc.c
+ * -------------------------------------
+ * author: @Locietta @程国斐 finished on 2020.5.17
+ * This source file implements the header calc.h
+ */
+
+
 #include "calc.h"
 #include "stack.h"
 #include "queue.h"
@@ -6,14 +14,6 @@
 #include <ctype.h>
 #include <limits.h>
 #include <math.h>
-
-/**
- * Constants -- MAX_FUNC_NAME
- * -------------------------------------------
- * defines the maximum function name length
- */
-
-#define MAX_FUNC_NAME 7
 
 /**
  * Constants -- TYPE_NUM TYPE_OP TYPE_FUNC
@@ -51,11 +51,11 @@ typedef struct opNode {
 
 /* 1 -- overall steps */
 
-static int exprAnalyzer(const char *expr, queue *infixRes);
+static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes);
 
-static int convert2Postfix(queue infix, queue *postfixRes);
+static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes);
 
-static int calcPostfix(queue postfix, double *result);
+static ERROR_FLAG calcPostfix(queue postfix, double *result);
 
 /* 2 -- operator attributes */
 
@@ -67,7 +67,7 @@ static int op_associate(const char *op);
 
 /* 3 -- detailed procedures */
 
-static int calcSingle(char *op, double num[], double *result);
+static ERROR_FLAG calcSingle(char *op, double num[], double *result);
 
 static int bracketMatched(const char *expr);
 
@@ -92,7 +92,6 @@ static int isFunction(char *name);
 /* Public functions */
 
 int Calc(char *expr, double *result) {
-    // TODO
     queue infix, postfix;
     int ret = 0;
     if (*expr) {
@@ -170,7 +169,7 @@ static int op_associate(const char *op) {
     }
 }
 
-static int calcSingle(char *op, double num[], double *result) {
+static ERROR_FLAG calcSingle(char *op, double num[], double *result) {
     switch (strlen(op)) {
     case 1:
         switch (*op) {
@@ -182,7 +181,7 @@ static int calcSingle(char *op, double num[], double *result) {
                 *result = num[0] / num[1];
             } else {
                 // puts("0 can't be used as divide number")
-                return 1;
+                return ERROR_DIVIDE_ZERO;
             }
             break;
         case '%':
@@ -190,7 +189,7 @@ static int calcSingle(char *op, double num[], double *result) {
                 *result = (int) num[0] % (int) num[1];
             } else {
                 // puts("% operation demands integers");
-                return 2;
+                return ERROR_MOD_NONINTERGER;
             }
             break;
         case '^': *result = pow(num[0], num[1]); break;
@@ -214,11 +213,11 @@ static int calcSingle(char *op, double num[], double *result) {
     return 0;
 }
 
-static int exprAnalyzer(const char *expr, queue *infixRes) {
+static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes) {
 
     if (!bracketMatched(expr)) {
         // puts("brackets unmatched");
-        return 1;
+        return ERROR_UNMATCHED_BRAC;
     }
 
     // /* this if-block is not neccessary */
@@ -237,7 +236,7 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
             } else {
                 // puts("invalid number");
                 infix.destory(&infix);
-                return 2;
+                return ERROR_INVALID_NUMBER;
             }
         } else if (isalpha(*expr)) {
             opNode tempNode = {TYPE_FUNC, .op = ""};
@@ -246,7 +245,7 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
             } else {
                 // puts("unknown function name");
                 infix.destory(&infix);
-                return 3;
+                return ERROR_UNKNOWN_FUNC_NAME;
             }
         } else if (isOperator(*expr)) {
             opNode tempNode = {TYPE_OP, .op = ""};
@@ -261,11 +260,11 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
         } else {
             // puts("unknown operator");
             infix.destory(&infix);
-            return 4;
+            return ERROR_UNKNOWN_OP;
         }
     }
     *infixRes = infix;
-    return 0;
+    return NOT_ERROR;
 }
 
 static const char *numberFetcher(const char *expr, double *result) {
@@ -277,7 +276,6 @@ static const char *numberFetcher(const char *expr, double *result) {
     if (*expr == '.') {
         *(numstr++) = '0';
     }
-    
     while (isdigit(*expr) || *expr == '.') {
         if (isdigit(*expr)) {
             *(numstr++) = *(expr++);
@@ -354,7 +352,7 @@ static int bracketMatched(const char *expr) {
     }
 }
 
-static int convert2Postfix(queue infix, queue *postfixRes) {
+static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes) {
     queue postfix = newQueue(opNode);
     stack opstack = newStack(opNode);
 
@@ -383,7 +381,7 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
                 opstack.destory(&opstack);
                 infix.destory(&infix);
 
-                return 1;
+                return ERROR_WRONG_POSITION_ARGUMENT_SPLITER;
             }
         } else if (tempNode.type == TYPE_OP) {
             while (!opstack.empty(&opstack)) {
@@ -419,10 +417,10 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
     opstack.destory(&opstack);
 
     *postfixRes = postfix;
-    return 0;
+    return NOT_ERROR;
 }
 
-static int calcPostfix(queue postfix, double *result) {
+static ERROR_FLAG calcPostfix(queue postfix, double *result) {
     stack calcstack = newStack(double);
     opNode tempNode;
     while (postfix.pop(&postfix, &tempNode) != POP_IN_EMPTY_QUEUE) {
@@ -438,11 +436,11 @@ static int calcPostfix(queue postfix, double *result) {
                     // puts("argument number unmatched");
                     postfix.destory(&postfix);
                     calcstack.destory(&calcstack);
-                    return 1;
+                    return ERROR_WRONG_OPRAND_NUMBER;
                 }
             }
             double temp;
-            int ret = 0;
+            ERROR_FLAG ret = 0;
             if ((ret = calcSingle(tempNode.op, num, &temp))) {
                 postfix.destory(&postfix);
                 calcstack.destory(&calcstack);
@@ -458,7 +456,7 @@ static int calcPostfix(queue postfix, double *result) {
         // puts("argument number unmatched");
         postfix.destory(&postfix);
         calcstack.destory(&calcstack);
-        return 1;
+        return ERROR_WRONG_OPRAND_NUMBER;
     }
     postfix.destory(&postfix);
     calcstack.destory(&calcstack);

@@ -10,6 +10,14 @@
 #define CALC_H
 
 /**
+ * Constants -- MAX_FUNC_NAME
+ * -------------------------------------------
+ * defines the maximum function name length
+ */
+
+#define MAX_FUNC_NAME 7
+
+/**
  * Function: Calc
  * Usage: Calc(expr, &result);
  * ---------------------------
