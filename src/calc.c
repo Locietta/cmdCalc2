@@ -55,6 +55,8 @@ static int exprAnalyzer(const char *expr, queue *infixRes);
 
 static int convert2Postfix(queue infix, queue *postfixRes);
 
+static int calcPostfix(queue postfix, double *result);
+
 /* 2 -- operator attributes */
 
 static int op_prior(const char *op);
@@ -226,7 +228,7 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
             }
         } else if (isalpha(*expr)) {
             opNode tempNode = {TYPE_FUNC, .op = ""};
-            if ((expr = functionFetcher(expr, (char *) &tempNode.op))) {
+            if ((expr = functionFetcher(expr, tempNode.op))) {
                 infix.push(&infix, &tempNode);
             } else {
                 // puts("unknown function name");
@@ -384,7 +386,7 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
                 postfix.push(&postfix, &optemp);
             }
             opstack.pop(&opstack, NULL); // clean left bracket
-            // if there is no left bracket, there must be somthing wrong with bracketMatched()   
+            // if there is no left bracket, there must be somthing wrong with bracketMatched()
         }
     }
     infix.destory(&infix);
@@ -399,3 +401,45 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
     return 0;
 }
 
+static int calcPostfix(queue postfix, double *result) {
+    stack calcstack = newStack(double);
+    opNode tempNode;
+    int ret = 0;
+    while (postfix.pop(&postfix, &tempNode) != POP_IN_EMPTY_QUEUE) {
+        if (tempNode.type == TYPE_NUM) {
+            calcstack.push(&calcstack, &tempNode.num);
+        } else {
+            int arg_needNum = op_argnum(tempNode.op);
+            double num[arg_needNum]; // C99: VLA
+            for (int i = 1; i <= arg_needNum; ++i) {
+                if (!calcstack.empty(&calcstack)) {
+                    calcstack.pop(&calcstack, num + arg_needNum - i);
+                } else {
+                    // puts("argument number unmatched");
+                    postfix.destory(&postfix);
+                    calcstack.destory(&calcstack);
+                    return 1;
+                }
+            }
+            double temp;
+            if ((ret = calcSingle(tempNode.op, num, &temp))) {
+                postfix.destory(&postfix);
+                calcstack.destory(&calcstack);
+                return ret;
+            } else {
+                calcstack.push(&calcstack, &temp);
+            }
+        }
+    }
+    if (calcstack.size == 1) {
+        calcstack.pop(&calcstack, result);
+    } else if (calcstack.size > 1) {
+        // puts("argument number unmatched");
+        postfix.destory(&postfix);
+        calcstack.destory(&calcstack);
+        return 1;
+    }
+    postfix.destory(&postfix);
+    calcstack.destory(&calcstack);
+    return ret;
+}
