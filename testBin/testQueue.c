@@ -26,7 +26,7 @@ int main(void) {
     printf("%g\n", *(double *) myqueue.back(&myqueue));
     myqueue.clear(&myqueue);
     if (myqueue.empty(&myqueue)) {
-        puts("Now the stack is empty");
+        puts("Now the queue is empty");
     }
     printf("Push 3> ");
     for (int i = 0; i < 3; ++i) {
