@@ -5,7 +5,6 @@
  * This source file implements the header calc.h
  */
 
-
 #include "calc.h"
 #include "stack.h"
 #include "queue.h"
@@ -51,11 +50,11 @@ typedef struct opNode {
 
 /* 1 -- overall steps */
 
-static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes);
+static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes);
 
-static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes);
+static ERROR_INFO convert2Postfix(queue infix, queue *postfixRes);
 
-static ERROR_FLAG calcPostfix(queue postfix, double *result);
+static ERROR_INFO calcPostfix(queue postfix, double *result);
 
 /* 2 -- operator attributes */
 
@@ -71,7 +70,7 @@ static ERROR_FLAG calcSingle(char *op, double num[], double *result);
 
 static int bracketMatched(const char *expr);
 
-static const char *numberFetcher(const char *expr, double *result);
+static const char *numberFetcher(const char *expr, double *result, char *number);
 
 static const char *functionFetcher(const char *expr, char *funcName);
 
@@ -91,17 +90,17 @@ static int isFunction(char *name);
 
 /* Public functions */
 
-int Calc(char *expr, double *result) {
+ERROR_INFO Calc(char *expr, double *result) {
     queue infix, postfix;
-    int ret = 0;
+    ERROR_INFO ret = {NOT_ERROR};
     if (*expr) {
-        if ((ret = exprAnalyzer(expr, &infix))) {
+        if ((ret = exprAnalyzer(expr, &infix)).error) {
             return ret;
         }
-        if ((ret = convert2Postfix(infix, &postfix))) {
+        if ((ret = convert2Postfix(infix, &postfix)).error) {
             return ret;
         }
-        if ((ret = calcPostfix(postfix, result))) {
+        if ((ret = calcPostfix(postfix, result)).error) {
             return ret;
         }
     }
@@ -213,11 +212,11 @@ static ERROR_FLAG calcSingle(char *op, double num[], double *result) {
     return 0;
 }
 
-static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes) {
+static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes) {
 
     if (!bracketMatched(expr)) {
         // puts("brackets unmatched");
-        return ERROR_UNMATCHED_BRAC;
+        return (ERROR_INFO){ERROR_UNMATCHED_BRAC};
     }
 
     // /* this if-block is not neccessary */
@@ -231,12 +230,15 @@ static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes) {
     while (*expr) {
         if (isNum(*expr) || ((*expr == '-' || *expr == '+') && ((!isdigit(*(expr - 1)) && isNum(*(expr + 1))) || expr == start))) {
             opNode tempNode = {TYPE_NUM, .num = 0};
-            if ((expr = numberFetcher(expr, &tempNode.num))) {
+            char numChar[MAX_NUMBER + 1];
+            if ((expr = numberFetcher(expr, &tempNode.num, numChar))) {
                 infix.push(&infix, &tempNode);
             } else {
                 // puts("invalid number");
                 infix.destory(&infix);
-                return ERROR_INVALID_NUMBER;
+                ERROR_INFO ret = {ERROR_INVALID_NUMBER};
+                strcpy(ret.number, numChar);
+                return ret;
             }
         } else if (isalpha(*expr)) {
             opNode tempNode = {TYPE_FUNC, .op = ""};
@@ -245,7 +247,9 @@ static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes) {
             } else {
                 // puts("unknown function name");
                 infix.destory(&infix);
-                return ERROR_UNKNOWN_FUNC_NAME;
+                ERROR_INFO ret = {ERROR_UNKNOWN_FUNC_NAME};
+                strcpy(ret.funcName, tempNode.op);
+                return ret;
             }
         } else if (isOperator(*expr)) {
             opNode tempNode = {TYPE_OP, .op = ""};
@@ -260,15 +264,15 @@ static ERROR_FLAG exprAnalyzer(const char *expr, queue *infixRes) {
         } else {
             // puts("unknown operator");
             infix.destory(&infix);
-            return ERROR_UNKNOWN_OP;
+            return (ERROR_INFO){ERROR_UNKNOWN_OP, .op = *expr};
         }
     }
     *infixRes = infix;
-    return NOT_ERROR;
+    return SUCCESS;
 }
 
-static const char *numberFetcher(const char *expr, double *result) {
-    char buf[50], *numstr = buf;
+static const char *numberFetcher(const char *expr, double *result, char *number) {
+    char buf[MAX_NUMBER + 1], *numstr = buf;
     const char *start = expr;
     if (*expr == '+' || *expr == '-') {
         *(numstr++) = *(expr++);
@@ -297,6 +301,7 @@ static const char *numberFetcher(const char *expr, double *result) {
         }
     }
     *numstr = '\0';
+    strcpy(number, buf);
     sscanf(buf, "%lf", result);
     return expr;
 }
@@ -352,7 +357,7 @@ static int bracketMatched(const char *expr) {
     }
 }
 
-static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes) {
+static ERROR_INFO convert2Postfix(queue infix, queue *postfixRes) {
     queue postfix = newQueue(opNode);
     stack opstack = newStack(opNode);
 
@@ -381,7 +386,7 @@ static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes) {
                 opstack.destory(&opstack);
                 infix.destory(&infix);
 
-                return ERROR_WRONG_POSITION_ARGUMENT_SPLITER;
+                return (ERROR_INFO){ERROR_WRONG_POSITION_ARGUMENT_SPLITER};
             }
         } else if (tempNode.type == TYPE_OP) {
             while (!opstack.empty(&opstack)) {
@@ -417,10 +422,10 @@ static ERROR_FLAG convert2Postfix(queue infix, queue *postfixRes) {
     opstack.destory(&opstack);
 
     *postfixRes = postfix;
-    return NOT_ERROR;
+    return SUCCESS;
 }
 
-static ERROR_FLAG calcPostfix(queue postfix, double *result) {
+static ERROR_INFO calcPostfix(queue postfix, double *result) {
     stack calcstack = newStack(double);
     opNode tempNode;
     while (postfix.pop(&postfix, &tempNode) != POP_IN_EMPTY_QUEUE) {
@@ -436,12 +441,12 @@ static ERROR_FLAG calcPostfix(queue postfix, double *result) {
                     // puts("argument number unmatched");
                     postfix.destory(&postfix);
                     calcstack.destory(&calcstack);
-                    return ERROR_WRONG_OPRAND_NUMBER;
+                    return (ERROR_INFO){ERROR_WRONG_OPRAND_NUMBER};
                 }
             }
             double temp;
-            ERROR_FLAG ret = 0;
-            if ((ret = calcSingle(tempNode.op, num, &temp))) {
+            ERROR_INFO ret = {NOT_ERROR};
+            if ((ret.error = calcSingle(tempNode.op, num, &temp))) {
                 postfix.destory(&postfix);
                 calcstack.destory(&calcstack);
                 return ret;
@@ -456,9 +461,9 @@ static ERROR_FLAG calcPostfix(queue postfix, double *result) {
         // puts("argument number unmatched");
         postfix.destory(&postfix);
         calcstack.destory(&calcstack);
-        return ERROR_WRONG_OPRAND_NUMBER;
+        return (ERROR_INFO){ERROR_WRONG_OPRAND_NUMBER};
     }
     postfix.destory(&postfix);
     calcstack.destory(&calcstack);
-    return 0;
+    return SUCCESS;
 }
