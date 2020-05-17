@@ -201,6 +201,9 @@ static ERROR_FLAG calcSingle(char *op, double num[], double *result) {
         } else if (!strcmp(op, "cos")) {
             *result = cos(num[0]);
         } else if (!strcmp(op, "ln")) {
+            if (num[0]<=0){
+                return ERROR_NEGATIVE_IN_LOG;
+            }
             *result = log(num[0]);
         } else if (!strcmp(op, "exp")) {
             *result = exp(num[0]);
@@ -209,7 +212,7 @@ static ERROR_FLAG calcSingle(char *op, double num[], double *result) {
         }
         break;
     }
-    return 0;
+    return NOT_ERROR;
 }
 
 static ERROR_INFO exprAnalyzer(const char *expr, queue *infixRes) {

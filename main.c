@@ -18,7 +18,7 @@ int main(void) {
         if (*expr && (err = Calc(expr, &result)).error == NOT_ERROR) {
             colorPrintf(GREEN, "result: ");
             colorPrintf(LIGHTCYAN, "%g\n", result);
-        } else if (err.error) {
+        } else if (*expr) {
             ErrReport(err, expr);
         }
         colorPrintf(PURPLE, "Input > ");
