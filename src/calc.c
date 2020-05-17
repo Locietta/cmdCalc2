@@ -271,7 +271,13 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
 static const char *numberFetcher(const char *expr, double *result) {
     char buf[50], *numstr = buf;
     const char *start = expr;
-
+    if (*expr == '+' || *expr == '-') {
+        *(numstr++) = *(expr++);
+    }
+    if (*expr == '.') {
+        *(numstr++) = '0';
+    }
+    
     while (isdigit(*expr) || *expr == '.') {
         if (isdigit(*expr)) {
             *(numstr++) = *(expr++);
@@ -288,6 +294,8 @@ static const char *numberFetcher(const char *expr, double *result) {
             } else {
                 return NULL; // one number with two (or more) '.' e.g. 1.23.5
             }
+        } else {
+            *(numstr++) = *(expr++);
         }
     }
     *numstr = '\0';
@@ -422,7 +430,7 @@ static int calcPostfix(queue postfix, double *result) {
             calcstack.push(&calcstack, &tempNode.num);
         } else {
             unsigned int arg_needNum = op_argnum(tempNode.op); // unsigned is neccessary OR you'll get a wierd error with gcc8 or newer
-            double num[arg_needNum]; // C99: VLA
+            double num[arg_needNum];                           // C99: VLA
             for (int i = 1; i <= arg_needNum; ++i) {
                 if (!calcstack.empty(&calcstack)) {
                     calcstack.pop(&calcstack, num + arg_needNum - i);
