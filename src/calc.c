@@ -421,7 +421,7 @@ static int calcPostfix(queue postfix, double *result) {
         if (tempNode.type == TYPE_NUM) {
             calcstack.push(&calcstack, &tempNode.num);
         } else {
-            int arg_needNum = op_argnum(tempNode.op);
+            unsigned int arg_needNum = op_argnum(tempNode.op); // unsigned is neccessary OR you'll get a wierd error with gcc8 or newer
             double num[arg_needNum]; // C99: VLA
             for (int i = 1; i <= arg_needNum; ++i) {
                 if (!calcstack.empty(&calcstack)) {
