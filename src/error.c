@@ -78,7 +78,7 @@ static void ErrReport_unknownFuncName(char *funcName) {
 
 static void ErrReport_unknownOperator(char op) {
     printf("      ? ");
-    colorPrintf(RED, "unknown function name ");
+    colorPrintf(RED, "unknown operator ");
     colorPrintf(YELLOW, "%c", op);
     putchar('\n');
 }
