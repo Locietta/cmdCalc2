@@ -41,7 +41,7 @@ int main(void) {
     myqueue.pop(&myqueue, NULL);
     while (myqueue.size) {
         myqueue.pop(&myqueue, &out);
-        printf("%g ", out);
+        printf("%g \n", out);
     }
     if (myqueue.empty(&myqueue)) {
         puts("Now the queue is empty");
