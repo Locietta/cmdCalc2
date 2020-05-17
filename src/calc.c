@@ -16,22 +16,20 @@
 #define MAX_FUNC_NAME 7
 
 /**
- * Constants -- TYPE_OP TYPE_NUM
+ * Constants -- TYPE_NUM TYPE_OP TYPE_FUNC
  * -------------------------------------------
  * identifier of opNode::type
  */
 
-enum { TYPE_OP,
-       TYPE_NUM };
+enum { TYPE_NUM, TYPE_OP, TYPE_FUNC, TYPE_IDENTIFIER };
 
 /**
  * Constants -- LEFT RIGHT
  * -------------------------------------------
- * identifier for op_associate() 
+ * identifier for op_associate()
  */
 
-enum { LEFT,
-       RIGHT };
+enum { LEFT, RIGHT };
 
 /**
  * Data Structure -- opNode
@@ -57,25 +55,19 @@ static int op_argnum(const char *op);
 
 static int op_associate(const char *op);
 
-
-
 static int calcSingle(char *op, double num[], double *result);
 
 static int exprAnalyzer(const char *expr, queue *infixRes);
 
-static int convert2Postfix(queue infix, );
-
-
+static int convert2Postfix(queue infix, queue *postfixRes);
 
 static int bracketMatched(const char *expr);
 
-static char *numberFetcher(const char *expr, double *result);
+static const char *numberFetcher(const char *expr, double *result);
 
-static char *functionFetcher(const char *expr, char *funcName);
+static const char *functionFetcher(const char *expr, char* funcName);
 
 static int isFunction(char *name);
-
-
 
 #define isOperator(c) (c == '+' || c == '-' || c == '/' || c == '*' || c == '%' || c == '=' || c == '^')
 
@@ -84,7 +76,6 @@ static int isFunction(char *name);
 #define isRightBrac(c) (c == ')' || c == '}' || c == ']')
 
 #define isNum(c) (isdigit(c) || c == '.')
-
 
 /* Function implementations */
 
@@ -101,19 +92,14 @@ static int op_prior(const char *op) {
     switch (strlen(op)) {
     case 1:
         switch (*op) {
-        case '^':
-            return 4;
+        case '^': return 4;
         case '*':
         case '/':
-        case '%':
-            return 3;
+        case '%': return 3;
         case '+':
-        case '-':
-            return 2;
-        case '=':
-            return 1;
-        default:
-            return 0;
+        case '-': return 2;
+        case '=': return 1;
+        default: return 0;
         }
         break;
     default: // functions have the highest prior
@@ -133,8 +119,7 @@ static int op_argnum(const char *op) {
         case '^':
         case '=': // here '=' means 'compare'
             return 2;
-        default:
-            return -1; // unknown operator
+        default: return -1; // unknown operator
         }
         break;
     default:
@@ -154,19 +139,21 @@ static int op_argnum(const char *op) {
     }
 }
 
+static int op_associate(const char *op) {
+    if (!strcmp(op, "^")) {
+        return RIGHT;
+    } else {
+        return LEFT;
+    }
+}
+
 static int calcSingle(char *op, double num[], double *result) {
     switch (strlen(op)) {
     case 1:
         switch (*op) {
-        case '+':
-            *result = num[0] + num[1];
-            break;
-        case '-':
-            *result = num[0] - num[1];
-            break;
-        case '*':
-            *result = num[0] * num[1];
-            break;
+        case '+': *result = num[0] + num[1]; break;
+        case '-': *result = num[0] - num[1]; break;
+        case '*': *result = num[0] * num[1]; break;
         case '/':
             if (num[1]) {
                 *result = num[0] / num[1];
@@ -183,12 +170,8 @@ static int calcSingle(char *op, double num[], double *result) {
                 return 2;
             }
             break;
-        case '^':
-            *result = pow(num[0], num[1]);
-            break;
-        case '=':
-            *result = (num[0] == num[1]);
-            break;
+        case '^': *result = pow(num[0], num[1]); break;
+        case '=': *result = (num[0] == num[1]); break;
         }
         break;
     default:
@@ -222,10 +205,9 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
     // }
 
     queue infix = newQueue(opNode);
-    char *start = expr;
+    const char *start = expr;
     while (*expr) {
-        if (isNum(*expr) || 
-        ((*expr == '-' || *expr == '+') && ((!isdigit(*(expr - 1)) && isNum(*(expr + 1)) ) || expr == start ))) {
+        if (isNum(*expr) || ((*expr == '-' || *expr == '+') && ((!isdigit(*(expr - 1)) && isNum(*(expr + 1))) || expr == start))) {
             opNode tempNode = {TYPE_NUM, .num = 0};
             if ((expr = numberFetcher(expr, &tempNode.num))) {
                 infix.push(&infix, &tempNode);
@@ -235,16 +217,21 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
                 return 2;
             }
         } else if (isalpha(*expr)) {
-            opNode tempNode = {TYPE_OP, .op = ""};
-            if ((expr = functionFetcher(expr, &tempNode.op))) {
+            opNode tempNode = {TYPE_FUNC, .op = ""};
+            if ((expr = functionFetcher(expr, (char *) &tempNode.op))) {
                 infix.push(&infix, &tempNode);
             } else {
                 // puts("unknown function name");
                 infix.destory(&infix);
                 return 3;
             }
-        } else if (isOperator(*expr) || *expr == ',' || isLeftBrac(*expr) || isRightBrac(*expr)) {
+        } else if (isOperator(*expr)) {
             opNode tempNode = {TYPE_OP, .op = ""};
+            tempNode.op[0] = *(expr++);
+            tempNode.op[1] = '\0';
+            infix.push(&infix, &tempNode);
+        } else if (*expr == ',' || isLeftBrac(*expr) || isRightBrac(*expr)) {
+            opNode tempNode = {TYPE_IDENTIFIER, .op = ""};
             tempNode.op[0] = *(expr++);
             tempNode.op[1] = '\0';
             infix.push(&infix, &tempNode);
@@ -258,8 +245,9 @@ static int exprAnalyzer(const char *expr, queue *infixRes) {
     return 0;
 }
 
-static char *numberFetcher(const char *expr, double *result) {
-    char buf[50], *numstr = buf, start = expr;
+static const char *numberFetcher(const char *expr, double *result) {
+    char buf[50], *numstr = buf;
+    const char *start = expr;
 
     while (isdigit(*expr) || *expr == '.') {
         if (isdigit(*expr)) {
@@ -288,7 +276,7 @@ static int isFunction(char *name) {
     return !(strcmp(name, "sin") && strcmp(name, "cos") && strcmp(name, "ln") && strcmp(name, "exp") && strcmp(name, "pow"));
 }
 
-static char *functionFetcher(const char *expr, char *funcName) {
+static const char *functionFetcher(const char *expr, char* funcName) {
     char buf[MAX_FUNC_NAME + 1], *funcstr = buf;
     while (isalpha(*expr)) {
         *(funcstr++) = *(expr++);
@@ -332,5 +320,62 @@ static int bracketMatched(const char *expr) {
     } else {
         brac_stack.destory(&brac_stack);
         return 0;
+    }
+}
+
+static int convert2Postfix(queue infix, queue *postfixRes) {
+    queue postfix = newQueue(opNode);
+    stack opstack = newStack(opNode);
+
+    while (!infix.empty(&infix)) {
+        opNode tempNode;
+        infix.pop(&infix, &tempNode);
+
+        if (tempNode.type == TYPE_NUM) {
+            postfix.push(&postfix, &tempNode);
+        } else if (tempNode.type == TYPE_FUNC) {
+            opstack.push(&opstack, &tempNode);
+        } else if (!strcmp(tempNode.op, ",")) {
+            while (!opstack.empty(&opstack)) {
+                opNode optemp;
+                opstack.pop(&opstack, &optemp);
+                if (isLeftBrac(optemp.op[0])) {
+                    opstack.push(&opstack, &optemp);
+                    break;
+                } else {
+                    postfix.push(&postfix, &optemp);
+                }
+            }
+            if (opstack.empty(&opstack)) {
+                // puts("wrong postion for function argument spliter ','");
+                postfix.destory(&postfix); // caution leakage
+                opstack.destory(&opstack);
+                infix.destory(&infix);
+
+                return 1;
+            }
+        } else if (tempNode.type == TYPE_OP) {
+            while (!opstack.empty(&opstack)) {
+                if ((op_prior(((opNode *) opstack.top(&opstack))->op) > op_prior(tempNode.op)) ||
+                    (op_prior(((opNode *) opstack.top(&opstack))->op) == op_prior(tempNode.op) && op_associate(tempNode.op) == LEFT)) {
+
+                    opNode optemp;
+                    opstack.pop(&opstack, &optemp);
+                    postfix.push(&postfix, &optemp);
+                } else {
+                    break;
+                }
+            }
+            opstack.push(&opstack, &tempNode);
+        } else if (isLeftBrac(tempNode.op[0])) {
+            opstack.push(&opstack, &tempNode);
+        } else if (isRightBrac(tempNode.op[0])) {
+            while (!opstack.empty(&opstack) && !isLeftBrac(((opNode *) opstack.top(&opstack))->op[0])) {
+                opNode optemp;
+                opstack.pop(&opstack, &optemp);
+                postfix.push(&postfix, &optemp);
+            }
+            opstack.pop(&opstack, NULL); // clean left bracket
+        }
     }
 }
