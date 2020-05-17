@@ -10,39 +10,40 @@
 
 /* Private Function Prototypes */
 
-void ErrReport_unmatchedBrac(void);
+static void ErrReport_unmatchedBrac(void);
 
-void ErrReport_invalidNumber(void);
+static void ErrReport_invalidNumber(char *number);
 
-void ErrReport_unknownFuncName(void);
+static void ErrReport_unknownFuncName(char *funcName);
 
-void ErrReport_unknownOperator(void);
+static void ErrReport_unknownOperator(char op);
 
-void ErrReport_wrongSpliterPos(void);
+static void ErrReport_wrongSpliterPos(void);
 
-void ErrReport_wrongOprandNum(void);
+static void ErrReport_wrongOprandNum(void);
 
-void ErrReport_divideByZero(void);
+static void ErrReport_divideByZero(void);
 
-void ErrReport_nonIntegerMod(void);
+static void ErrReport_nonIntegerMod(void);
 
 /* Function Implementations */
 
 /* Public Function */
 
-void ErrReport(ERROR_FLAG error, char *expr) {
-    if (error == NOT_ERROR) {
+void ErrReport(ERROR_INFO err, char *expr) {
+    if (err.error == NOT_ERROR) {
         return;
     }
     colorPrintf(RED, "error: ");
     printf("Can't calculate illegal expression ");
     colorPrintf(YELLOW, expr);
     putchar('\n');
-    switch (error) {
+    switch (err.error) {
+    case NOT_ERROR: break;
     case ERROR_UNMATCHED_BRAC: ErrReport_unmatchedBrac(); break;
-    case ERROR_INVALID_NUMBER: ErrReport_invalidNumber(); break;
-    case ERROR_UNKNOWN_FUNC_NAME: ErrReport_unknownFuncName(); break;
-    case ERROR_UNKNOWN_OP: ErrReport_unknownOperator(); break;
+    case ERROR_INVALID_NUMBER: ErrReport_invalidNumber(err.number); break;
+    case ERROR_UNKNOWN_FUNC_NAME: ErrReport_unknownFuncName(err.funcName); break;
+    case ERROR_UNKNOWN_OP: ErrReport_unknownOperator(err.op); break;
     case ERROR_WRONG_POSITION_ARGUMENT_SPLITER: ErrReport_wrongSpliterPos(); break;
     case ERROR_WRONG_OPRAND_NUMBER: ErrReport_wrongOprandNum(); break;
     case ERROR_DIVIDE_ZERO: ErrReport_divideByZero(); break;
@@ -53,21 +54,55 @@ void ErrReport(ERROR_FLAG error, char *expr) {
 
 /* Private Function */
 
-void ErrReport_unmatchedBrac(void) {
+static void ErrReport_unmatchedBrac(void) {
     printf("     ? ");
-    colorPrintf(CYAN, "unmatched brackets");
-    printf(" in the expression...");
+    colorPrintf(RED, "unmatched brackets");
+    printf(" in the expression...\n");
 }
 
-void ErrReport_invalidNumber(void) {
+static void ErrReport_invalidNumber(char *number) {
     printf("     ? ");
-    colorPrintf(CYAN, "invalid number");
-    printf(" in the expression...");
+    colorPrintf(RED, "invalid number ");
+    colorPrintf(YELLOW, number);
+    putchar('\n');
 }
 
-void ErrReport_unknownFuncName(void) {
+static void ErrReport_unknownFuncName(char *funcName) {
     printf("     ? ");
-    colorPrintf(CYAN, "invalid number");
-    printf(" in the expression...");
+    colorPrintf(RED, "unknown function name ");
+    colorPrintf(YELLOW, funcName);
+    putchar('\n');
 }
 
+static void ErrReport_unknownOperator(char op) {
+    printf("     ? ");
+    colorPrintf(RED, "unknown function name ");
+    colorPrintf(YELLOW, "%c", op);
+    putchar('\n');
+}
+
+static void ErrReport_wrongSpliterPos(void) {
+    printf("     ? ");
+    colorPrintf(RED, "wrong position");
+    printf(" for the function argument spliter");
+    colorPrintf(YELLOW, " ,\n");
+}
+
+static void ErrReport_wrongOprandNum(void) {
+    printf("     ? ");
+    colorPrintf(RED, "oprand number unmatched");
+    printf(" in the expression...\n");
+}
+
+static void ErrReport_divideByZero(void) {
+    printf("     ? ");
+    colorPrintf(RED, "0 as a divisor");
+    printf(" in the expression...\n");
+}
+
+static void ErrReport_nonIntegerMod(void) {
+    printf("     ? try to do ");
+    colorPrintf(RED, "modular");
+    printf(" calculation between ");
+    colorPrintf(RED, "non-integers");
+}

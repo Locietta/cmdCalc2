@@ -10,10 +10,11 @@
 
 #ifndef ERROR_H
 #define ERROR_H
+
 #include "color.h"
 #include "queue.h"
 #include "stack.h"
-#include "calc.h"
+#include "constant.h"
 #include <stdio.h>
 
 /**
@@ -35,7 +36,7 @@ typedef enum ERROR_FLAG {
 } ERROR_FLAG;
 
 /**
- * union -- ERROR_INFO
+ * struct -- ERROR_INFO
  * -------------------------------------------
  * provide all the information needed for error-reporting
  */
@@ -44,8 +45,12 @@ typedef struct ERROR_INFO {
     ERROR_FLAG error;
     union {
         char funcName[MAX_FUNC_NAME + 1];
+        char number[MAX_NUMBER];
+        char op;
     };
 } ERROR_INFO;
+
+#define SUCCESS (ERROR_INFO){NOT_ERROR}
 
 /**
  * Function: ErrReport
