@@ -65,7 +65,7 @@ static int bracketMatched(const char *expr);
 
 static const char *numberFetcher(const char *expr, double *result);
 
-static const char *functionFetcher(const char *expr, char* funcName);
+static const char *functionFetcher(const char *expr, char *funcName);
 
 static int isFunction(char *name);
 
@@ -276,7 +276,7 @@ static int isFunction(char *name) {
     return !(strcmp(name, "sin") && strcmp(name, "cos") && strcmp(name, "ln") && strcmp(name, "exp") && strcmp(name, "pow"));
 }
 
-static const char *functionFetcher(const char *expr, char* funcName) {
+static const char *functionFetcher(const char *expr, char *funcName) {
     char buf[MAX_FUNC_NAME + 1], *funcstr = buf;
     while (isalpha(*expr)) {
         *(funcstr++) = *(expr++);
@@ -376,6 +376,17 @@ static int convert2Postfix(queue infix, queue *postfixRes) {
                 postfix.push(&postfix, &optemp);
             }
             opstack.pop(&opstack, NULL); // clean left bracket
+            // if there is no left bracket, there must be somthing wrong with bracketMatched()   
         }
     }
+    infix.destory(&infix);
+    while (!opstack.empty(&opstack)) {
+        opNode tempop;
+        opstack.pop(&opstack, &tempop);
+        postfix.push(&postfix, &tempop);
+    }
+    opstack.destory(&opstack);
+    
+    *postfixRes = postfix;
+    return 0;
 }
