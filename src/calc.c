@@ -1,8 +1,15 @@
 /**
- * File: calc.c
- * -------------------------------------
- * author: @Locietta @程国斐 @赵萌 finished on 2020.5.17
- * This source file implements the header calc.h
+ * @file calc.c
+ * @author Locietta 程国斐 赵萌 
+ * @brief 计算相关的所有函数实现
+ * 
+ * 包括表达式分析、中缀后缀转换、符号的优先级，操作数和结合性
+ * 后缀表达式的计算
+ * 另外一个重要的设计是错误信息的逐级传递
+ * 
+ * @version 0.1
+ * @date 2020-05-17
+ * 
  */
 
 #include "calc.h"

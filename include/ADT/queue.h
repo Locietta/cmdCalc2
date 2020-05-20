@@ -17,7 +17,7 @@
 #include <stddef.h>
 
 /**
- * @brief NULL_QUEUE 空队列
+ * @brief NULL_QUEUE NULL队列
  * 一个无内容的队列,用于表示队列生成错误等
  */
 #define NULL_QUEUE ((queue){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})

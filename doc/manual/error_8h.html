@@ -63,11 +63,11 @@ error.h 的引用(Include)关系图:</div>
 <div class="center"><img src="error_8h__incl.png" border="0" usemap="#error_8h" alt=""/></div>
 <map name="error_8h" id="error_8h">
 <area shape="rect" title=" " alt="" coords="164,5,223,32"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="73,80,135,107"/>
+<area shape="rect" href="color_8h.html" title="提供简单的命令行彩色输出" alt="" coords="73,80,135,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,67,181"/>
 <area shape="rect" href="queue_8h.html" title="抽象队列" alt="" coords="159,80,227,107"/>
-<area shape="rect" href="stack_8h.html" title=" " alt="" coords="251,80,317,107"/>
-<area shape="rect" href="constant_8h.html" title=" " alt="" coords="341,80,424,107"/>
+<area shape="rect" href="stack_8h.html" title="抽象栈" alt="" coords="251,80,317,107"/>
+<area shape="rect" href="constant_8h.html" title="一些符号常量" alt="" coords="341,80,424,107"/>
 <area shape="rect" title=" " alt="" coords="91,155,173,181"/>
 <area shape="rect" title=" " alt="" coords="223,155,291,181"/>
 </map>
@@ -78,9 +78,9 @@ error.h 的引用(Include)关系图:</div>
 <div class="center"><img src="error_8h__dep__incl.png" border="0" usemap="#error_8hdep" alt=""/></div>
 <map name="error_8hdep" id="error_8hdep">
 <area shape="rect" title=" " alt="" coords="95,5,153,32"/>
-<area shape="rect" href="calc_8h.html" title=" " alt="" coords="62,80,119,107"/>
+<area shape="rect" href="calc_8h.html" title="提供表达式计算函数的接口" alt="" coords="62,80,119,107"/>
 <area shape="rect" href="main_8c.html" title="Project 1 – 中缀计算器" alt="" coords="5,155,67,181"/>
-<area shape="rect" href="calc_8c.html" title=" " alt="" coords="115,155,173,181"/>
+<area shape="rect" href="calc_8c.html" title="计算相关的所有函数实现" alt="" coords="115,155,173,181"/>
 <area shape="rect" href="error_8c.html" title=" " alt="" coords="195,80,253,107"/>
 </map>
 </div>
@@ -128,7 +128,13 @@ error.h 的引用(Include)关系图:</div>
 <tr class="memitem:ad124a2467c414057bb2bd4a434b89cc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ad124a2467c414057bb2bd4a434b89cc8">ErrReport</a> (<a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> error, char *expr)</td></tr>
 <tr class="separator:ad124a2467c414057bb2bd4a434b89cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">宏定义说明</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><dl class="section author"><dt>作者</dt><dd>赵萌 </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2020-05-20 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="error_8h_source.html">error.h</a> 中定义.</p>
+</div><h2 class="groupheader">宏定义说明</h2>
 <a id="aa90cac659d18e8ef6294c7ae337f6b58"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa90cac659d18e8ef6294c7ae337f6b58">&#9670;&nbsp;</a></span>SUCCESS</h2>
 
@@ -144,7 +150,7 @@ error.h 的引用(Include)关系图:</div>
 <div class="line">        NOT_ERROR                                                                                                                                                                                      \</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
-<p class="definition">在文件 <a class="el" href="error_8h_source.html">error.h</a> 第 <a class="el" href="error_8h_source.html#l00055">55</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="error_8h_source.html">error.h</a> 第 <a class="el" href="error_8h_source.html#l00065">65</a> 行定义.</p>
 
 </div>
 </div>
@@ -160,10 +166,10 @@ error.h 的引用(Include)关系图:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 File: error.h</h2>
 <p>author: @赵萌 modified by @Locietta on 2020.5.10 (defined ERROR_H) This header defines several functions examine the error in expression ready to calculate </p>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 enumerate type – ERROR_FLAG</h2>
 <p>identifier for error-reporting </p>
 
@@ -180,7 +186,7 @@ enumerate type – ERROR_FLAG</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 struct – ERROR_INFO</h2>
 <p>provide all the information needed for error-reporting </p>
 
@@ -198,10 +204,10 @@ struct – ERROR_INFO</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 File: error.h</h2>
 <p>author: @赵萌 modified by @Locietta on 2020.5.10 (defined ERROR_H) This header defines several functions examine the error in expression ready to calculate </p>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 enumerate type – ERROR_FLAG</h2>
 <p>identifier for error-reporting </p>
 <table class="fieldtable">
@@ -217,7 +223,7 @@ enumerate type – ERROR_FLAG</h2>
 <tr><td class="fieldname"><a id="a72977208401c64649f3daa79e98cb1efa503aac498fbfb85a986785b67b88e33e"></a>ERROR_NEGATIVE_IN_LOG&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">在文件 <a class="el" href="error_8h_source.html">error.h</a> 第 <a class="el" href="error_8h_source.html#l00026">26</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="error_8h_source.html">error.h</a> 第 <a class="el" href="error_8h_source.html#l00036">36</a> 行定义.</p>
 
 </div>
 </div>
@@ -248,7 +254,7 @@ enumerate type – ERROR_FLAG</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: ErrReport </p>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Usage: ErrReport(ERROR_INVALID_NUMBER, expr);</h2>
 <p>All-in-one error-report function first argument allow the function identify the type of error second argument tells the function the whole expression calculated </p>
 

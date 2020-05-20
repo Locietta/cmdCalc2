@@ -1,16 +1,32 @@
 /**
- * File: stack.h
- * -------------------------------------
- * author: @Locietta finished on 2020.5.8
+ * @file stack.h
+ * @author Locietta
+ * @brief 抽象栈
+ * 
  * (defined STACK_H)
  * This header defines an abstract stack
+ * 
+ * @version 0.1
+ * @date 2020-05-08
+ * 
+ * 
  */
 
 #ifndef STACK_H
 #define STACK_H
 
 #include <stddef.h>
+
+/**
+ * @brief NULL_QUEUE NULL栈
+ * 一个无内容的栈,用于表示栈生成错误等
+ */
 #define NULL_STACK ((stack){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL})
+
+/**
+ * @brief POP_IN_EMPTY_STACK
+ * 标识在空栈中pop的错误
+ */
 #define POP_IN_EMPTY_STACK 1
 
 typedef struct Node *List;

@@ -1,9 +1,14 @@
 /**
- * File: calc.h
- * -------------------------------------
- * author: @Locietta finished on 2020.5.10
+ * @file calc.h
+ * @author Locietta (https://github.com/Locietta)
+ * @brief 提供表达式计算函数的接口
+ * 
  * (defined CALC_H)
  * This header defines several functions needed for calculation
+ * 
+ * @version 0.1
+ * @date 2020-05-10
+ * 
  */
 
 #ifndef CALC_H

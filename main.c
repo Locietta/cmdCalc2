@@ -12,14 +12,17 @@
  * @section 数据结构
  * -# 抽象堆栈和抽象队列
  * @section 分工
- * -# 王灵鑫/Locietta @par 架构、调度场算法、彩色输出、(其它各种实现...)、注释和文档、code review & modify & merge
+ * -# 王灵鑫/Locietta @par 架构、抽象栈和队列、调度场算法、彩色输出、(其它各种实现...)、注释和文档、code review & modify & merge
  * -# 程国斐 @par 表达式分析(从中缀表达式字符串变为中缀表达式队列)、测试
  * -# 赵萌   @par 括号匹配、错误报告设计、测试
+ * @section Github
+ * 虽然我觉得没必要放(
+ * https://github.com/Locietta/C_Class_Project1
  */
 
 /**
  * @file main.c
- * @author 王灵鑫/Locietta 程国斐 赵萌 (https://github.com/Locietta/C_Class_Project1/tree/doxygenDoc)
+ * @author 王灵鑫/Locietta 程国斐 赵萌 
  * @brief Project 1 -- 中缀计算器
  * @version 0.1
  * @date 2020-05-20

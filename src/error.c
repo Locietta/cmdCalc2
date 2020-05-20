@@ -1,5 +1,5 @@
 /**
- * File: calc.c
+ * File: error.c
  * -------------------------------------
  * author: @Locietta finished on 2020.5.17
  * This source file implements the header error.h

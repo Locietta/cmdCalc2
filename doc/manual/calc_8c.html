@@ -52,6 +52,9 @@ $(function() {
 <div class="title">calc.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>计算相关的所有函数实现  
+<a href="#details">更多...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="calc_8h_source.html">calc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stack_8h_source.html">stack.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="queue_8h_source.html">queue.h</a>&quot;</code><br />
@@ -65,18 +68,18 @@ calc.c 的引用(Include)关系图:</div>
 <div class="dyncontent">
 <div class="center"><img src="calc_8c__incl.png" border="0" usemap="#calc_8c" alt=""/></div>
 <map name="calc_8c" id="calc_8c">
-<area shape="rect" title=" " alt="" coords="373,5,430,32"/>
-<area shape="rect" href="calc_8h.html" title=" " alt="" coords="221,80,278,107"/>
+<area shape="rect" title="计算相关的所有函数实现" alt="" coords="373,5,430,32"/>
+<area shape="rect" href="calc_8h.html" title="提供表达式计算函数的接口" alt="" coords="221,80,278,107"/>
 <area shape="rect" href="error_8h.html" title=" " alt="" coords="171,155,229,181"/>
 <area shape="rect" href="queue_8h.html" title="抽象队列" alt="" coords="355,229,423,256"/>
-<area shape="rect" href="stack_8h.html" title=" " alt="" coords="266,229,331,256"/>
+<area shape="rect" href="stack_8h.html" title="抽象栈" alt="" coords="266,229,331,256"/>
 <area shape="rect" title=" " alt="" coords="405,80,470,107"/>
 <area shape="rect" title=" " alt="" coords="494,80,559,107"/>
 <area shape="rect" title=" " alt="" coords="584,80,648,107"/>
 <area shape="rect" title=" " alt="" coords="673,80,735,107"/>
-<area shape="rect" href="color_8h.html" title=" " alt="" coords="73,229,135,256"/>
+<area shape="rect" href="color_8h.html" title="提供简单的命令行彩色输出" alt="" coords="73,229,135,256"/>
 <area shape="rect" title=" " alt="" coords="5,304,67,331"/>
-<area shape="rect" href="constant_8h.html" title=" " alt="" coords="159,229,241,256"/>
+<area shape="rect" href="constant_8h.html" title="一些符号常量" alt="" coords="159,229,241,256"/>
 <area shape="rect" title=" " alt="" coords="91,304,173,331"/>
 <area shape="rect" title=" " alt="" coords="310,304,378,331"/>
 </map>
@@ -145,7 +148,14 @@ calc.c 的引用(Include)关系图:</div>
 <tr class="memitem:a9b09060b56f4368ad8f0add4d2d2b12c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c">Calc</a> (char *expr, double *result)</td></tr>
 <tr class="separator:a9b09060b56f4368ad8f0add4d2d2b12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">宏定义说明</h2>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>计算相关的所有函数实现 </p>
+<dl class="section author"><dt>作者</dt><dd>Locietta 程国斐 赵萌 包括表达式分析、中缀后缀转换、符号的优先级，操作数和结合性 后缀表达式的计算 另外一个重要的设计是错误信息的逐级传递</dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2020-05-17 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 中定义.</p>
+</div><h2 class="groupheader">宏定义说明</h2>
 <a id="ab17c99908dbef9fac7eb5b34841cf44c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab17c99908dbef9fac7eb5b34841cf44c">&#9670;&nbsp;</a></span>isLeftBrac</h2>
 
@@ -162,7 +172,7 @@ calc.c 的引用(Include)关系图:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00084">84</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00091">91</a> 行定义.</p>
 
 </div>
 </div>
@@ -182,7 +192,7 @@ calc.c 的引用(Include)关系图:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00088">88</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00095">95</a> 行定义.</p>
 
 </div>
 </div>
@@ -202,7 +212,7 @@ calc.c 的引用(Include)关系图:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00082">82</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00089">89</a> 行定义.</p>
 
 </div>
 </div>
@@ -222,7 +232,7 @@ calc.c 的引用(Include)关系图:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00086">86</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00093">93</a> 行定义.</p>
 
 </div>
 </div>
@@ -239,7 +249,7 @@ calc.c 的引用(Include)关系图:</div>
       </table>
 </div><div class="memdoc">
 <p>Data Structure &ndash; <a class="el" href="structop_node.html">opNode</a> </p>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Usage: queue exprQueue = newQueue(opNode);</h2>
 <p>store operators and oprands(numbers) <a class="el" href="structop_node.html#a95ba34ba07c827e6ae25eb0df0af8651">opNode::type</a> indicate the type it store (operator or oprand) </p>
 
@@ -257,10 +267,7 @@ Usage: queue exprQueue = newQueue(opNode);</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md28"></a>
-File: calc.c</h2>
-<p>author: @Locietta @程国斐 @赵萌 finished on 2020.5.17 This source file implements the header <a class="el" href="calc_8h.html">calc.h</a> </p>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 Constants – TYPE_NUM TYPE_OP TYPE_FUNC</h2>
 <p>identifier of <a class="el" href="structop_node.html#a95ba34ba07c827e6ae25eb0df0af8651">opNode::type</a> </p>
 <table class="fieldtable">
@@ -270,7 +277,7 @@ Constants – TYPE_NUM TYPE_OP TYPE_FUNC</h2>
 <tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba3e3b4ee3e4371cd170bd31bad3fb1cb9"></a>TYPE_IDENTIFIER&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00023">23</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00030">30</a> 行定义.</p>
 
 </div>
 </div>
@@ -285,7 +292,7 @@ Constants – TYPE_NUM TYPE_OP TYPE_FUNC</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 Constants – LEFT RIGHT</h2>
 <p>identifier for <a class="el" href="calc_8c.html#a0aa4726fd28b33bfdcfadf77b90c8694">op_associate()</a> </p>
 <table class="fieldtable">
@@ -293,7 +300,7 @@ Constants – LEFT RIGHT</h2>
 <tr><td class="fieldname"><a id="adf764cbdea00d65edcd07bb9953ad2b7aec8379af7490bb9eaaf579cf17876f38"></a>RIGHT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00031">31</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00038">38</a> 行定义.</p>
 
 </div>
 </div>
@@ -322,7 +329,7 @@ Constants – LEFT RIGHT</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00331">331</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00338">338</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -362,14 +369,12 @@ Constants – LEFT RIGHT</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<h2><a class="anchor" id="autotoc_md18"></a>
-File: calc.h</h2>
-<p>author: @Locietta finished on 2020.5.10 (defined CALC_H) This header defines several functions needed for calculation Function: Calc </p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<p>Function: Calc </p>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Usage: Calc(expr, &amp;result);</h2>
 <p>This function calculate the expression given by 'expr' its result will be put into the 'result' If everything is OK, it shall return 0 Otherwise, it returns a non-zero value indicating errors </p>
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00093">93</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00100">100</a> 行定义.</p>
 <div class="dynheader">
 函数调用图:</div>
 <div class="dyncontent">
@@ -435,7 +440,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00432">432</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00439">439</a> 行定义.</p>
 <div class="dynheader">
 函数调用图:</div>
 <div class="dyncontent">
@@ -499,7 +504,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00171">171</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00178">178</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -548,7 +553,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00364">364</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00371">371</a> 行定义.</p>
 <div class="dynheader">
 函数调用图:</div>
 <div class="dyncontent">
@@ -606,7 +611,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00218">218</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00225">225</a> 行定义.</p>
 <div class="dynheader">
 函数调用图:</div>
 <div class="dyncontent">
@@ -666,7 +671,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00317">317</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00324">324</a> 行定义.</p>
 <div class="dynheader">
 函数调用图:</div>
 <div class="dyncontent">
@@ -714,7 +719,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00313">313</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00320">320</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -770,7 +775,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00279">279</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00286">286</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -809,7 +814,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00131">131</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00138">138</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -848,7 +853,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00163">163</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00170">170</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">
@@ -887,7 +892,7 @@ Usage: Calc(expr, &amp;result);</h2>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00112">112</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00119">119</a> 行定义.</p>
 <div class="dynheader">
 这是这个函数的调用关系图:</div>
 <div class="dyncontent">

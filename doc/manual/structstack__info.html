@@ -80,7 +80,7 @@ Public 属性</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock">
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00019">19</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00035">35</a> 行定义.</p>
 </div><h2 class="groupheader">类成员变量说明</h2>
 <a id="a89ae0474fb11343f4ce65fdcf18f72ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89ae0474fb11343f4ce65fdcf18f72ab">&#9670;&nbsp;</a></span>clear</h2>
@@ -94,11 +94,11 @@ Public 属性</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Function: clear </p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Usage: mystack.clear(&amp;mystack);</h2>
 <p>This function clear all the data in the stack. So the stack object can later be reused. If you wanna dispose this stack, DON NOT use it, use <a class="el" href="structstack__info.html#a50226c92416bbfa4c28150f0f3aebef2">destory()</a> instead. (Or you'll get a leakage) </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00083">83</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00099">99</a> 行定义.</p>
 
 </div>
 </div>
@@ -114,11 +114,11 @@ Usage: mystack.clear(&amp;mystack);</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: destory </p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Usage: mystack.destory(&amp;mystack);</h2>
 <p>This function free all the data in the stack. You have to reinitialize it with <a class="el" href="stack_8h.html#acf6964baeb628f0797a09660f88cd99f">newStack()</a> if you wanna use it again. When you want to dispose a stack, use <a class="el" href="structstack__info.html#a50226c92416bbfa4c28150f0f3aebef2">destory()</a> instead of <a class="el" href="structstack__info.html#a89ae0474fb11343f4ce65fdcf18f72ab">clear()</a> </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00095">95</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00111">111</a> 行定义.</p>
 
 </div>
 </div>
@@ -134,7 +134,7 @@ Usage: mystack.destory(&amp;mystack);</h2>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00022">22</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00038">38</a> 行定义.</p>
 
 </div>
 </div>
@@ -150,11 +150,11 @@ Usage: mystack.destory(&amp;mystack);</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: empty </p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Usage: mystack.empty(&amp;mystack);</h2>
 <p>This function returns 1 if the stack is empty, otherwise, returns 0; </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00034">34</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00050">50</a> 行定义.</p>
 
 </div>
 </div>
@@ -170,7 +170,7 @@ Usage: mystack.empty(&amp;mystack);</h2>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00020">20</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00036">36</a> 行定义.</p>
 
 </div>
 </div>
@@ -186,11 +186,11 @@ Usage: mystack.empty(&amp;mystack);</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: pop </p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Usage: mystack.pop(&amp;mystack, &amp;buffer);</h2>
 <p>This function copy the last element into the datafield pointed by &amp;buffer. And then DELETE the last element in the stack. In case of empty stack, it returns a non-zero value (POP_IN_EMPTY_STACK), if everything is OK, it shall return 0 </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00057">57</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00073">73</a> 行定义.</p>
 
 </div>
 </div>
@@ -206,11 +206,11 @@ Usage: mystack.pop(&amp;mystack, &amp;buffer);</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: push </p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Usage: mystack.push(&amp;mystack, &amp;input);</h2>
 <p>This function COPY the data pointed by a pointer into a new element in the stack. Later, when variable "input" changes its value, the element in stack will NOT change. if everything is OK, it shall return 0, otherwise, it returns a non-zero value indicating an error. </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00070">70</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00086">86</a> 行定义.</p>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Usage: mystack.push(&amp;mystack, &amp;input);</h2>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00021">21</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00037">37</a> 行定义.</p>
 
 </div>
 </div>
@@ -242,11 +242,11 @@ Usage: mystack.push(&amp;mystack, &amp;input);</h2>
       </table>
 </div><div class="memdoc">
 <p>Function: top </p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Usage: int n = *(int *) mystack.top(&amp;mystack);</h2>
 <p>This function return a pointer pointing to the last element of the stack. It will NOT delete the last element, and you can't use this pointer as a lvalue. </p>
 
-<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00045">45</a> 行定义.</p>
+<p class="definition">在文件 <a class="el" href="stack_8h_source.html">stack.h</a> 第 <a class="el" href="stack_8h_source.html#l00061">61</a> 行定义.</p>
 
 </div>
 </div>

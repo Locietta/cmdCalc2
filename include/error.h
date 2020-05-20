@@ -1,4 +1,17 @@
 /**
+ * @file error.h
+ * @author 赵萌 
+ * @brief 
+ * @version 0.1
+ * @date 2020-05-20
+ * 
+ * 
+ */
+
+
+#ifndef ERROR_H
+#define ERROR_H
+/**
  * File: error.h
  * -------------------------------------
  * author: @赵萌
@@ -7,9 +20,6 @@
  * This header defines several functions examine the error
  * in expression ready to calculate
  */
-
-#ifndef ERROR_H
-#define ERROR_H
 
 #include "color.h"
 #include "queue.h"

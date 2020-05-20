@@ -1,10 +1,16 @@
 /**
- * File: constant.h
- * -------------------------------------
- * author: @Locietta finished on 2020.5.17
+ * @file constant.h
+ * @author Locietta (https://github.com/Locietta)
+ * @brief 一些符号常量
+ * 
  * (defined CONSTANT_H)
  * This header defines some constant 
  * to identify length limits
+ * 
+ * @version 0.1
+ * @date 2020-05-17
+ * 
+ * 
  */
 
 // 本来不会有这玩意的，但是不提取出来的话calc.h和error.h就会循环包含(当场暴毙)
