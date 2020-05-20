@@ -1,3 +1,13 @@
+/**
+ * @file color.c
+ * @author Locietta
+ * @brief color.h 的实现,自定义了一个printf函数
+ * @version 0.1
+ * @date 2020.5.9 
+ * 
+ * 
+ */
+
 #include "color.h"
 #include <stdarg.h>
 #include <stdio.h>
