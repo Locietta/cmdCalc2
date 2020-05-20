@@ -1,0 +1,913 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>中缀计算器: calc.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">中缀计算器
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.18 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','搜索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">calc.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="calc_8h_source.html">calc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stack_8h_source.html">stack.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="queue_8h_source.html">queue.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="error_8h_source.html">error.h</a>&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+calc.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c__incl.png" border="0" usemap="#calc_8c" alt=""/></div>
+<map name="calc_8c" id="calc_8c">
+<area shape="rect" title=" " alt="" coords="373,5,430,32"/>
+<area shape="rect" href="calc_8h.html" title=" " alt="" coords="221,80,278,107"/>
+<area shape="rect" href="error_8h.html" title=" " alt="" coords="171,155,229,181"/>
+<area shape="rect" href="queue_8h.html" title="抽象队列" alt="" coords="355,229,423,256"/>
+<area shape="rect" href="stack_8h.html" title=" " alt="" coords="266,229,331,256"/>
+<area shape="rect" title=" " alt="" coords="405,80,470,107"/>
+<area shape="rect" title=" " alt="" coords="494,80,559,107"/>
+<area shape="rect" title=" " alt="" coords="584,80,648,107"/>
+<area shape="rect" title=" " alt="" coords="673,80,735,107"/>
+<area shape="rect" href="color_8h.html" title=" " alt="" coords="73,229,135,256"/>
+<area shape="rect" title=" " alt="" coords="5,304,67,331"/>
+<area shape="rect" href="constant_8h.html" title=" " alt="" coords="159,229,241,256"/>
+<area shape="rect" title=" " alt="" coords="91,304,173,331"/>
+<area shape="rect" title=" " alt="" coords="310,304,378,331"/>
+</map>
+</div>
+</div>
+<p><a href="calc_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structop_node.html">opNode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a4999fa4c88280df4b2b9a86761094f81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a4999fa4c88280df4b2b9a86761094f81">isOperator</a>(c)&#160;&#160;&#160;(c == '+' || c == '-' || c == '/' || c == '*' || c == '%' || c == '=' || c == '^')</td></tr>
+<tr class="separator:a4999fa4c88280df4b2b9a86761094f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17c99908dbef9fac7eb5b34841cf44c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#ab17c99908dbef9fac7eb5b34841cf44c">isLeftBrac</a>(c)&#160;&#160;&#160;(c == '(' || c == '{' || c == '[')</td></tr>
+<tr class="separator:ab17c99908dbef9fac7eb5b34841cf44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb9ae7d986c90430c946ca376c20983"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#abeb9ae7d986c90430c946ca376c20983">isRightBrac</a>(c)&#160;&#160;&#160;(c == ')' || c == '}' || c == ']')</td></tr>
+<tr class="separator:abeb9ae7d986c90430c946ca376c20983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af01b43bbb0e04b9b0e9fd509f941deb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#af01b43bbb0e04b9b0e9fd509f941deb8">isNum</a>(c)&#160;&#160;&#160;(isdigit(c) || c == '.')</td></tr>
+<tr class="separator:af01b43bbb0e04b9b0e9fd509f941deb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a48d64008cefb62147acc2f9a9321c7c5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structop_node.html">opNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a48d64008cefb62147acc2f9a9321c7c5">opNode</a></td></tr>
+<tr class="separator:a48d64008cefb62147acc2f9a9321c7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="calc_8c.html#a06fc87d81c62e9abb8790b6e5713c55bac6fe9f8e465744d00af6ec9f162d1144">TYPE_NUM</a>, 
+<a class="el" href="calc_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba62cfa1c6c92eada310eb1cf0a16f578b">TYPE_OP</a>, 
+<a class="el" href="calc_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba0c448a6aec9e4daad44524e3e729f434">TYPE_FUNC</a>, 
+<a class="el" href="calc_8c.html#a06fc87d81c62e9abb8790b6e5713c55ba3e3b4ee3e4371cd170bd31bad3fb1cb9">TYPE_IDENTIFIER</a>
+ }</td></tr>
+<tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf764cbdea00d65edcd07bb9953ad2b7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="calc_8c.html#adf764cbdea00d65edcd07bb9953ad2b7adb45120aafd37a973140edee24708065">LEFT</a>, 
+<a class="el" href="calc_8c.html#adf764cbdea00d65edcd07bb9953ad2b7aec8379af7490bb9eaaf579cf17876f38">RIGHT</a>
+ }</td></tr>
+<tr class="separator:adf764cbdea00d65edcd07bb9953ad2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a59ffd5d128adf93301250fffbcbc05f4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4">exprAnalyzer</a> (const char *expr, <a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> *infixRes)</td></tr>
+<tr class="separator:a59ffd5d128adf93301250fffbcbc05f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ad9afd057a734df0fc989e428d8e23"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a48ad9afd057a734df0fc989e428d8e23">convert2Postfix</a> (<a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> infix, <a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> *postfixRes)</td></tr>
+<tr class="separator:a48ad9afd057a734df0fc989e428d8e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f050562636f736a251fb2b54a26d9c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a84f050562636f736a251fb2b54a26d9c">calcPostfix</a> (<a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> postfix, double *result)</td></tr>
+<tr class="separator:a84f050562636f736a251fb2b54a26d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc881220d1dbae775309f18d63ec64f5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#adc881220d1dbae775309f18d63ec64f5">op_prior</a> (const char *op)</td></tr>
+<tr class="separator:adc881220d1dbae775309f18d63ec64f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b3aec1a023cbe8dbb7f79703b9ad89"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#af3b3aec1a023cbe8dbb7f79703b9ad89">op_argnum</a> (const char *op)</td></tr>
+<tr class="separator:af3b3aec1a023cbe8dbb7f79703b9ad89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa4726fd28b33bfdcfadf77b90c8694"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a0aa4726fd28b33bfdcfadf77b90c8694">op_associate</a> (const char *op)</td></tr>
+<tr class="separator:a0aa4726fd28b33bfdcfadf77b90c8694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294225e60ea3aea0735a392786cebe3a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="error_8h.html#a72977208401c64649f3daa79e98cb1ef">ERROR_FLAG</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a294225e60ea3aea0735a392786cebe3a">calcSingle</a> (char *op, double num[], double *result)</td></tr>
+<tr class="separator:a294225e60ea3aea0735a392786cebe3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99258d2f7aebc4542175df9b82a0369a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a99258d2f7aebc4542175df9b82a0369a">bracketMatched</a> (const char *expr)</td></tr>
+<tr class="separator:a99258d2f7aebc4542175df9b82a0369a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af0bec126ffcda5010655c2ecb53253"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a2af0bec126ffcda5010655c2ecb53253">numberFetcher</a> (const char *expr, double *result, char *number)</td></tr>
+<tr class="separator:a2af0bec126ffcda5010655c2ecb53253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f5f953ae28404c5183add2e547ff662"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a6f5f953ae28404c5183add2e547ff662">functionFetcher</a> (const char *expr, char *funcName)</td></tr>
+<tr class="separator:a6f5f953ae28404c5183add2e547ff662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b94d7b4b9a3b417e385b75ae58934cd"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a9b94d7b4b9a3b417e385b75ae58934cd">isFunction</a> (char *name)</td></tr>
+<tr class="separator:a9b94d7b4b9a3b417e385b75ae58934cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b09060b56f4368ad8f0add4d2d2b12c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c">Calc</a> (char *expr, double *result)</td></tr>
+<tr class="separator:a9b09060b56f4368ad8f0add4d2d2b12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ab17c99908dbef9fac7eb5b34841cf44c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17c99908dbef9fac7eb5b34841cf44c">&#9670;&nbsp;</a></span>isLeftBrac</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isLeftBrac</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;(c == '(' || c == '{' || c == '[')</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af01b43bbb0e04b9b0e9fd509f941deb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01b43bbb0e04b9b0e9fd509f941deb8">&#9670;&nbsp;</a></span>isNum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isNum</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;(isdigit(c) || c == '.')</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4999fa4c88280df4b2b9a86761094f81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4999fa4c88280df4b2b9a86761094f81">&#9670;&nbsp;</a></span>isOperator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isOperator</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;(c == '+' || c == '-' || c == '/' || c == '*' || c == '%' || c == '=' || c == '^')</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abeb9ae7d986c90430c946ca376c20983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeb9ae7d986c90430c946ca376c20983">&#9670;&nbsp;</a></span>isRightBrac</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define isRightBrac</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">c</td><td>)</td>
+          <td>&#160;&#160;&#160;(c == ')' || c == '}' || c == ']')</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="a48d64008cefb62147acc2f9a9321c7c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48d64008cefb62147acc2f9a9321c7c5">&#9670;&nbsp;</a></span>opNode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structop_node.html">opNode</a> <a class="el" href="structop_node.html">opNode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Data Structure &ndash; <a class="el" href="structop_node.html">opNode</a> </p>
+<h2><a class="anchor" id="autotoc_md31"></a>
+Usage: queue exprQueue = newQueue(opNode);</h2>
+<p>store operators and oprands(numbers) <a class="el" href="structop_node.html#a95ba34ba07c827e6ae25eb0df0af8651">opNode::type</a> indicate the type it store (operator or oprand) </p>
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a06fc87d81c62e9abb8790b6e5713c55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06fc87d81c62e9abb8790b6e5713c55b">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md28"></a>
+File: calc.c</h2>
+<p>author: @Locietta @程国斐 @赵萌 finished on 2020.5.17 This source file implements the header <a class="el" href="calc_8h.html">calc.h</a> </p>
+<h2><a class="anchor" id="autotoc_md29"></a>
+Constants – TYPE_NUM TYPE_OP TYPE_FUNC</h2>
+<p>identifier of <a class="el" href="structop_node.html#a95ba34ba07c827e6ae25eb0df0af8651">opNode::type</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55bac6fe9f8e465744d00af6ec9f162d1144"></a>TYPE_NUM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba62cfa1c6c92eada310eb1cf0a16f578b"></a>TYPE_OP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba0c448a6aec9e4daad44524e3e729f434"></a>TYPE_FUNC&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a06fc87d81c62e9abb8790b6e5713c55ba3e3b4ee3e4371cd170bd31bad3fb1cb9"></a>TYPE_IDENTIFIER&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00023">23</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adf764cbdea00d65edcd07bb9953ad2b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf764cbdea00d65edcd07bb9953ad2b7">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md30"></a>
+Constants – LEFT RIGHT</h2>
+<p>identifier for <a class="el" href="calc_8c.html#a0aa4726fd28b33bfdcfadf77b90c8694">op_associate()</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="adf764cbdea00d65edcd07bb9953ad2b7adb45120aafd37a973140edee24708065"></a>LEFT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adf764cbdea00d65edcd07bb9953ad2b7aec8379af7490bb9eaaf579cf17876f38"></a>RIGHT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a99258d2f7aebc4542175df9b82a0369a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99258d2f7aebc4542175df9b82a0369a">&#9670;&nbsp;</a></span>bracketMatched()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int bracketMatched </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00331">331</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a99258d2f7aebc4542175df9b82a0369a_icgraph.png" border="0" usemap="#calc_8c_a99258d2f7aebc4542175df9b82a0369a_icgraph" alt=""/></div>
+<map name="calc_8c_a99258d2f7aebc4542175df9b82a0369a_icgraph" id="calc_8c_a99258d2f7aebc4542175df9b82a0369a_icgraph">
+<area shape="rect" title=" " alt="" coords="347,5,461,32"/>
+<area shape="rect" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4" title=" " alt="" coords="200,5,299,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9b09060b56f4368ad8f0add4d2d2b12c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b09060b56f4368ad8f0add4d2d2b12c">&#9670;&nbsp;</a></span>Calc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> Calc </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h2><a class="anchor" id="autotoc_md18"></a>
+File: calc.h</h2>
+<p>author: @Locietta finished on 2020.5.10 (defined CALC_H) This header defines several functions needed for calculation Function: Calc </p>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Usage: Calc(expr, &amp;result);</h2>
+<p>This function calculate the expression given by 'expr' its result will be put into the 'result' If everything is OK, it shall return 0 Otherwise, it returns a non-zero value indicating errors </p>
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00093">93</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_cgraph.png" border="0" usemap="#calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_cgraph" alt=""/></div>
+<map name="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_cgraph" id="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,145,53,172"/>
+<area shape="rect" href="calc_8c.html#a84f050562636f736a251fb2b54a26d9c" title=" " alt="" coords="113,56,200,83"/>
+<area shape="rect" href="calc_8c.html#a48ad9afd057a734df0fc989e428d8e23" title=" " alt="" coords="101,145,212,172"/>
+<area shape="rect" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4" title=" " alt="" coords="107,221,206,248"/>
+<area shape="rect" href="calc_8c.html#a294225e60ea3aea0735a392786cebe3a" title=" " alt="" coords="276,5,359,32"/>
+<area shape="rect" href="calc_8c.html#af3b3aec1a023cbe8dbb7f79703b9ad89" title=" " alt="" coords="274,56,361,83"/>
+<area shape="rect" href="calc_8c.html#a0aa4726fd28b33bfdcfadf77b90c8694" title=" " alt="" coords="268,107,367,133"/>
+<area shape="rect" href="calc_8c.html#adc881220d1dbae775309f18d63ec64f5" title=" " alt="" coords="283,157,351,184"/>
+<area shape="rect" href="calc_8c.html#a99258d2f7aebc4542175df9b82a0369a" title=" " alt="" coords="260,208,375,235"/>
+<area shape="rect" href="calc_8c.html#a6f5f953ae28404c5183add2e547ff662" title=" " alt="" coords="262,259,373,285"/>
+<area shape="rect" href="calc_8c.html#a2af0bec126ffcda5010655c2ecb53253" title=" " alt="" coords="263,309,372,336"/>
+<area shape="rect" href="calc_8c.html#a9b94d7b4b9a3b417e385b75ae58934cd" title=" " alt="" coords="423,259,505,285"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_icgraph.png" border="0" usemap="#calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_icgraph" alt=""/></div>
+<map name="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_icgraph" id="calc_8c_a9b09060b56f4368ad8f0add4d2d2b12c_icgraph">
+<area shape="rect" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a84f050562636f736a251fb2b54a26d9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84f050562636f736a251fb2b54a26d9c">&#9670;&nbsp;</a></span>calcPostfix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> calcPostfix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a>&#160;</td>
+          <td class="paramname"><em>postfix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00432">432</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a84f050562636f736a251fb2b54a26d9c_cgraph.png" border="0" usemap="#calc_8c_a84f050562636f736a251fb2b54a26d9c_cgraph" alt=""/></div>
+<map name="calc_8c_a84f050562636f736a251fb2b54a26d9c_cgraph" id="calc_8c_a84f050562636f736a251fb2b54a26d9c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,92,57"/>
+<area shape="rect" href="calc_8c.html#a294225e60ea3aea0735a392786cebe3a" title=" " alt="" coords="142,5,225,32"/>
+<area shape="rect" href="calc_8c.html#af3b3aec1a023cbe8dbb7f79703b9ad89" title=" " alt="" coords="140,56,227,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a84f050562636f736a251fb2b54a26d9c_icgraph.png" border="0" usemap="#calc_8c_a84f050562636f736a251fb2b54a26d9c_icgraph" alt=""/></div>
+<map name="calc_8c_a84f050562636f736a251fb2b54a26d9c_icgraph" id="calc_8c_a84f050562636f736a251fb2b54a26d9c_icgraph">
+<area shape="rect" title=" " alt="" coords="200,5,287,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a294225e60ea3aea0735a392786cebe3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a294225e60ea3aea0735a392786cebe3a">&#9670;&nbsp;</a></span>calcSingle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="error_8h.html#a72977208401c64649f3daa79e98cb1ef">ERROR_FLAG</a> calcSingle </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>op</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>num</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00171">171</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a294225e60ea3aea0735a392786cebe3a_icgraph.png" border="0" usemap="#calc_8c_a294225e60ea3aea0735a392786cebe3a_icgraph" alt=""/></div>
+<map name="calc_8c_a294225e60ea3aea0735a392786cebe3a_icgraph" id="calc_8c_a294225e60ea3aea0735a392786cebe3a_icgraph">
+<area shape="rect" title=" " alt="" coords="335,5,417,32"/>
+<area shape="rect" href="calc_8c.html#a84f050562636f736a251fb2b54a26d9c" title=" " alt="" coords="200,5,287,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a48ad9afd057a734df0fc989e428d8e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ad9afd057a734df0fc989e428d8e23">&#9670;&nbsp;</a></span>convert2Postfix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> convert2Postfix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a>&#160;</td>
+          <td class="paramname"><em>infix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> *&#160;</td>
+          <td class="paramname"><em>postfixRes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00364">364</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a48ad9afd057a734df0fc989e428d8e23_cgraph.png" border="0" usemap="#calc_8c_a48ad9afd057a734df0fc989e428d8e23_cgraph" alt=""/></div>
+<map name="calc_8c_a48ad9afd057a734df0fc989e428d8e23_cgraph" id="calc_8c_a48ad9afd057a734df0fc989e428d8e23_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,116,57"/>
+<area shape="rect" href="calc_8c.html#a0aa4726fd28b33bfdcfadf77b90c8694" title=" " alt="" coords="164,5,263,32"/>
+<area shape="rect" href="calc_8c.html#adc881220d1dbae775309f18d63ec64f5" title=" " alt="" coords="179,56,247,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a48ad9afd057a734df0fc989e428d8e23_icgraph.png" border="0" usemap="#calc_8c_a48ad9afd057a734df0fc989e428d8e23_icgraph" alt=""/></div>
+<map name="calc_8c_a48ad9afd057a734df0fc989e428d8e23_icgraph" id="calc_8c_a48ad9afd057a734df0fc989e428d8e23_icgraph">
+<area shape="rect" title=" " alt="" coords="200,5,311,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a59ffd5d128adf93301250fffbcbc05f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59ffd5d128adf93301250fffbcbc05f4">&#9670;&nbsp;</a></span>exprAnalyzer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> exprAnalyzer </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> *&#160;</td>
+          <td class="paramname"><em>infixRes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00218">218</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_cgraph.png" border="0" usemap="#calc_8c_a59ffd5d128adf93301250fffbcbc05f4_cgraph" alt=""/></div>
+<map name="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_cgraph" id="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,104,83"/>
+<area shape="rect" href="calc_8c.html#a99258d2f7aebc4542175df9b82a0369a" title=" " alt="" coords="152,5,267,32"/>
+<area shape="rect" href="calc_8c.html#a6f5f953ae28404c5183add2e547ff662" title=" " alt="" coords="154,56,265,83"/>
+<area shape="rect" href="calc_8c.html#a2af0bec126ffcda5010655c2ecb53253" title=" " alt="" coords="155,107,264,133"/>
+<area shape="rect" href="calc_8c.html#a9b94d7b4b9a3b417e385b75ae58934cd" title=" " alt="" coords="315,56,397,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_icgraph.png" border="0" usemap="#calc_8c_a59ffd5d128adf93301250fffbcbc05f4_icgraph" alt=""/></div>
+<map name="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_icgraph" id="calc_8c_a59ffd5d128adf93301250fffbcbc05f4_icgraph">
+<area shape="rect" title=" " alt="" coords="200,5,299,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6f5f953ae28404c5183add2e547ff662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f5f953ae28404c5183add2e547ff662">&#9670;&nbsp;</a></span>functionFetcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char * functionFetcher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>funcName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00317">317</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a6f5f953ae28404c5183add2e547ff662_cgraph.png" border="0" usemap="#calc_8c_a6f5f953ae28404c5183add2e547ff662_cgraph" alt=""/></div>
+<map name="calc_8c_a6f5f953ae28404c5183add2e547ff662_cgraph" id="calc_8c_a6f5f953ae28404c5183add2e547ff662_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" href="calc_8c.html#a9b94d7b4b9a3b417e385b75ae58934cd" title=" " alt="" coords="164,5,247,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a6f5f953ae28404c5183add2e547ff662_icgraph.png" border="0" usemap="#calc_8c_a6f5f953ae28404c5183add2e547ff662_icgraph" alt=""/></div>
+<map name="calc_8c_a6f5f953ae28404c5183add2e547ff662_icgraph" id="calc_8c_a6f5f953ae28404c5183add2e547ff662_icgraph">
+<area shape="rect" title=" " alt="" coords="347,5,457,32"/>
+<area shape="rect" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4" title=" " alt="" coords="200,5,299,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9b94d7b4b9a3b417e385b75ae58934cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b94d7b4b9a3b417e385b75ae58934cd">&#9670;&nbsp;</a></span>isFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int isFunction </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00313">313</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a9b94d7b4b9a3b417e385b75ae58934cd_icgraph.png" border="0" usemap="#calc_8c_a9b94d7b4b9a3b417e385b75ae58934cd_icgraph" alt=""/></div>
+<map name="calc_8c_a9b94d7b4b9a3b417e385b75ae58934cd_icgraph" id="calc_8c_a9b94d7b4b9a3b417e385b75ae58934cd_icgraph">
+<area shape="rect" title=" " alt="" coords="505,5,588,32"/>
+<area shape="rect" href="calc_8c.html#a6f5f953ae28404c5183add2e547ff662" title=" " alt="" coords="347,5,457,32"/>
+<area shape="rect" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4" title=" " alt="" coords="200,5,299,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2af0bec126ffcda5010655c2ecb53253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af0bec126ffcda5010655c2ecb53253">&#9670;&nbsp;</a></span>numberFetcher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char * numberFetcher </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>result</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00279">279</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a2af0bec126ffcda5010655c2ecb53253_icgraph.png" border="0" usemap="#calc_8c_a2af0bec126ffcda5010655c2ecb53253_icgraph" alt=""/></div>
+<map name="calc_8c_a2af0bec126ffcda5010655c2ecb53253_icgraph" id="calc_8c_a2af0bec126ffcda5010655c2ecb53253_icgraph">
+<area shape="rect" title=" " alt="" coords="347,5,456,32"/>
+<area shape="rect" href="calc_8c.html#a59ffd5d128adf93301250fffbcbc05f4" title=" " alt="" coords="200,5,299,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af3b3aec1a023cbe8dbb7f79703b9ad89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b3aec1a023cbe8dbb7f79703b9ad89">&#9670;&nbsp;</a></span>op_argnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int op_argnum </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00131">131</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_af3b3aec1a023cbe8dbb7f79703b9ad89_icgraph.png" border="0" usemap="#calc_8c_af3b3aec1a023cbe8dbb7f79703b9ad89_icgraph" alt=""/></div>
+<map name="calc_8c_af3b3aec1a023cbe8dbb7f79703b9ad89_icgraph" id="calc_8c_af3b3aec1a023cbe8dbb7f79703b9ad89_icgraph">
+<area shape="rect" title=" " alt="" coords="335,5,421,32"/>
+<area shape="rect" href="calc_8c.html#a84f050562636f736a251fb2b54a26d9c" title=" " alt="" coords="200,5,287,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0aa4726fd28b33bfdcfadf77b90c8694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa4726fd28b33bfdcfadf77b90c8694">&#9670;&nbsp;</a></span>op_associate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int op_associate </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00163">163</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_a0aa4726fd28b33bfdcfadf77b90c8694_icgraph.png" border="0" usemap="#calc_8c_a0aa4726fd28b33bfdcfadf77b90c8694_icgraph" alt=""/></div>
+<map name="calc_8c_a0aa4726fd28b33bfdcfadf77b90c8694_icgraph" id="calc_8c_a0aa4726fd28b33bfdcfadf77b90c8694_icgraph">
+<area shape="rect" title=" " alt="" coords="359,5,457,32"/>
+<area shape="rect" href="calc_8c.html#a48ad9afd057a734df0fc989e428d8e23" title=" " alt="" coords="200,5,311,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adc881220d1dbae775309f18d63ec64f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc881220d1dbae775309f18d63ec64f5">&#9670;&nbsp;</a></span>op_prior()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int op_prior </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="calc_8c_source.html">calc.c</a> 第 <a class="el" href="calc_8c_source.html#l00112">112</a> 行定义.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="calc_8c_adc881220d1dbae775309f18d63ec64f5_icgraph.png" border="0" usemap="#calc_8c_adc881220d1dbae775309f18d63ec64f5_icgraph" alt=""/></div>
+<map name="calc_8c_adc881220d1dbae775309f18d63ec64f5_icgraph" id="calc_8c_adc881220d1dbae775309f18d63ec64f5_icgraph">
+<area shape="rect" title=" " alt="" coords="359,5,427,32"/>
+<area shape="rect" href="calc_8c.html#a48ad9afd057a734df0fc989e428d8e23" title=" " alt="" coords="200,5,311,32"/>
+<area shape="rect" href="calc_8c.html#a9b09060b56f4368ad8f0add4d2d2b12c" title=" " alt="" coords="104,5,152,32"/>
+<area shape="rect" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

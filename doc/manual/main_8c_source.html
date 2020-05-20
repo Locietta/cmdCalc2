@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>中缀计算器: main.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">中缀计算器
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.18 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','搜索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="main_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="color_8h.html">color.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="calcio_8h.html">calcio.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="calc_8h.html">calc.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="error_8h.html">error.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;windows.h&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8c.html#a9c0133ee662c6453f6c8ebeff0d7770c">titleLog</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   43</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">char</span> expr[100];</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">double</span> result = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="color_8h.html#a94142f4a761b1f2e07fe33ca766aec09">setColor</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a283fc479650da98250635b9c3c0e7e50">WHITE</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="main_8c.html#a9c0133ee662c6453f6c8ebeff0d7770c">titleLog</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a2772ad7cd64f03c2aed60f91c69fa69d">PURPLE</a>, <span class="stringliteral">&quot;Input &gt; &quot;</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="calcio_8h.html#ab0ce0658dfc70f1bdc5877edd6c9105c">Expr_gets</a>(expr, 100)) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a> err;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (*expr &amp;&amp; (err = <a class="code" href="calc_8h.html#a9b09060b56f4368ad8f0add4d2d2b12c">Calc</a>(expr, &amp;result)).error == <a class="code" href="error_8h.html#a72977208401c64649f3daa79e98cb1efae514dad6eaf5593afeee374a79ed4797">NOT_ERROR</a>) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9aa60bd322f93178d68184e30e162571ca">GREEN</a>, <span class="stringliteral">&quot;result: &quot;</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ac8d7b8737ca95d137a05f3bb8f3d1a17">LIGHTCYAN</a>, <span class="stringliteral">&quot;%g\n&quot;</span>, result);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (*expr) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="error_8h.html#ad124a2467c414057bb2bd4a434b89cc8">ErrReport</a>(err, expr);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a2772ad7cd64f03c2aed60f91c69fa69d">PURPLE</a>, <span class="stringliteral">&quot;Input &gt; &quot;</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ae735a848bf82163a19236ead1c3ef2d2">YELLOW</a>, <span class="stringliteral">&quot;See you ~&quot;</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Sleep(1000); <span class="comment">// wait for a second (</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="main_8c.html#a9c0133ee662c6453f6c8ebeff0d7770c">   64</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8c.html#a9c0133ee662c6453f6c8ebeff0d7770c">titleLog</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    printf(<span class="stringliteral">&quot;This is a &quot;</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a35d6719cb4d7577c031b3d79057a1b79">BLUE</a>, <span class="stringliteral">&quot;command line calculator&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    printf(<span class="stringliteral">&quot;.\nJust type expresions freely, and we&#39;ll calculate it.\nAnd... if you wanna a &quot;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ae735a848bf82163a19236ead1c3ef2d2">YELLOW</a>, <span class="stringliteral">&quot;quit, &quot;</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    printf(<span class="stringliteral">&quot;type in &quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9af3a6d81d1da6f2134cc3cca6f02b1114">LIGHTRED</a>, <span class="stringliteral">&quot;^z &quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    printf(<span class="stringliteral">&quot;(&quot;</span>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9af3a6d81d1da6f2134cc3cca6f02b1114">LIGHTRED</a>, <span class="stringliteral">&quot;ctrl &quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ae735a848bf82163a19236ead1c3ef2d2">YELLOW</a>, <span class="stringliteral">&quot;+ &quot;</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a>(<a class="code" href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9af3a6d81d1da6f2134cc3cca6f02b1114">LIGHTRED</a>, <span class="stringliteral">&quot;z&quot;</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    printf(<span class="stringliteral">&quot;) and the program would be ended.\n&quot;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9a2772ad7cd64f03c2aed60f91c69fa69d"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a2772ad7cd64f03c2aed60f91c69fa69d">PURPLE</a></div><div class="ttdeci">@ PURPLE</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00036">color.h:36</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9ae735a848bf82163a19236ead1c3ef2d2"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ae735a848bf82163a19236ead1c3ef2d2">YELLOW</a></div><div class="ttdeci">@ YELLOW</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00045">color.h:45</a></div></div>
+<div class="ttc" id="acolor_8h_html_a68d3ffcdd1ea4a9f04b2c0bb7297669b"><div class="ttname"><a href="color_8h.html#a68d3ffcdd1ea4a9f04b2c0bb7297669b">colorPrintf</a></div><div class="ttdeci">int __CRTDECL colorPrintf(TCOLOR color, const char *const _Format,...)</div><div class="ttdoc">colorPrintf 彩色printf输出</div></div>
+<div class="ttc" id="astruct_e_r_r_o_r___i_n_f_o_html"><div class="ttname"><a href="struct_e_r_r_o_r___i_n_f_o.html">ERROR_INFO</a></div><div class="ttdef"><b>Definition:</b> <a href="error_8h_source.html#l00045">error.h:45</a></div></div>
+<div class="ttc" id="acolor_8h_html_a94142f4a761b1f2e07fe33ca766aec09"><div class="ttname"><a href="color_8h.html#a94142f4a761b1f2e07fe33ca766aec09">setColor</a></div><div class="ttdeci">#define setColor(color)</div><div class="ttdoc">macro: setColor 切换默认字体颜色</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00062">color.h:61</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9a35d6719cb4d7577c031b3d79057a1b79"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a35d6719cb4d7577c031b3d79057a1b79">BLUE</a></div><div class="ttdeci">@ BLUE</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00032">color.h:32</a></div></div>
+<div class="ttc" id="aerror_8h_html_a72977208401c64649f3daa79e98cb1efae514dad6eaf5593afeee374a79ed4797"><div class="ttname"><a href="error_8h.html#a72977208401c64649f3daa79e98cb1efae514dad6eaf5593afeee374a79ed4797">NOT_ERROR</a></div><div class="ttdeci">@ NOT_ERROR</div><div class="ttdef"><b>Definition:</b> <a href="error_8h_source.html#l00027">error.h:27</a></div></div>
+<div class="ttc" id="acalc_8h_html"><div class="ttname"><a href="calc_8h.html">calc.h</a></div></div>
+<div class="ttc" id="acalcio_8h_html_ab0ce0658dfc70f1bdc5877edd6c9105c"><div class="ttname"><a href="calcio_8h.html#ab0ce0658dfc70f1bdc5877edd6c9105c">Expr_gets</a></div><div class="ttdeci">char * Expr_gets(char *s, int n)</div><div class="ttdoc">Function: Expr_gets</div><div class="ttdef"><b>Definition:</b> <a href="calcio_8c_source.html#l00012">calcio.c:12</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9af3a6d81d1da6f2134cc3cca6f02b1114"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9af3a6d81d1da6f2134cc3cca6f02b1114">LIGHTRED</a></div><div class="ttdeci">@ LIGHTRED</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00043">color.h:43</a></div></div>
+<div class="ttc" id="amain_8c_html_a9c0133ee662c6453f6c8ebeff0d7770c"><div class="ttname"><a href="main_8c.html#a9c0133ee662c6453f6c8ebeff0d7770c">titleLog</a></div><div class="ttdeci">void titleLog(void)</div><div class="ttdoc">打印一个标题</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00064">main.c:64</a></div></div>
+<div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9ac8d7b8737ca95d137a05f3bb8f3d1a17"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9ac8d7b8737ca95d137a05f3bb8f3d1a17">LIGHTCYAN</a></div><div class="ttdeci">@ LIGHTCYAN</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00042">color.h:42</a></div></div>
+<div class="ttc" id="amain_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00043">main.c:43</a></div></div>
+<div class="ttc" id="acalc_8h_html_a9b09060b56f4368ad8f0add4d2d2b12c"><div class="ttname"><a href="calc_8h.html#a9b09060b56f4368ad8f0add4d2d2b12c">Calc</a></div><div class="ttdeci">ERROR_INFO Calc(char *expr, double *result)</div><div class="ttdef"><b>Definition:</b> <a href="calc_8c_source.html#l00093">calc.c:93</a></div></div>
+<div class="ttc" id="acolor_8h_html"><div class="ttname"><a href="color_8h.html">color.h</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9a283fc479650da98250635b9c3c0e7e50"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9a283fc479650da98250635b9c3c0e7e50">WHITE</a></div><div class="ttdeci">@ WHITE</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00046">color.h:46</a></div></div>
+<div class="ttc" id="acalcio_8h_html"><div class="ttname"><a href="calcio_8h.html">calcio.h</a></div><div class="ttdoc">用于读入的一些自定义函数 (defined CALCIO_H)</div></div>
+<div class="ttc" id="aerror_8h_html_ad124a2467c414057bb2bd4a434b89cc8"><div class="ttname"><a href="error_8h.html#ad124a2467c414057bb2bd4a434b89cc8">ErrReport</a></div><div class="ttdeci">void ErrReport(ERROR_INFO error, char *expr)</div><div class="ttdef"><b>Definition:</b> <a href="error_8c_source.html#l00035">error.c:35</a></div></div>
+<div class="ttc" id="acolor_8h_html_ae58a2441496194d812f840ab33c4fcd9aa60bd322f93178d68184e30e162571ca"><div class="ttname"><a href="color_8h.html#ae58a2441496194d812f840ab33c4fcd9aa60bd322f93178d68184e30e162571ca">GREEN</a></div><div class="ttdeci">@ GREEN</div><div class="ttdef"><b>Definition:</b> <a href="color_8h_source.html#l00033">color.h:33</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

@@ -1,22 +1,40 @@
 /**
- * File: queue.h
- * -------------------------------------
- * author: @Locietta finished on 2020.5.9
+ * @file queue.h
+ * @author Locietta
+ * @brief 抽象队列
+ * 
  * (defined QUEUE_H)
  * This header defines an abstract queue
+ * 
+ * @version 0.1
+ * @date 2020-05-09
+ * 
+ * 
  */
-
 #ifndef QUEUE_H
 #define QUEUE_H
 
 #include <stddef.h>
+
+/**
+ * @brief NULL_QUEUE 空队列
+ * 一个无内容的队列,用于表示队列生成错误等
+ */
 #define NULL_QUEUE ((queue){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})
+
+/**
+ * @brief POP_IN_EMPTY_QUEUE
+ * 标识在空队列中pop的错误
+ */
 #define POP_IN_EMPTY_QUEUE 1
+
 
 typedef struct Node *List;
 
 typedef struct queue_info queue;
-struct queue_info {  // container
+
+
+struct queue_info {  
     List head;       // data
     int size;        // the number of elements in the queue
     size_t elemSize; // size of elements in the queue

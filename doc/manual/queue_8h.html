@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>中缀计算器: queue.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">中缀计算器
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.18 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','搜索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_50fec38bd52ea33be450006723c343c5.html">ADT</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">queue.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>抽象队列  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+queue.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="queue_8h__incl.png" border="0" usemap="#queue_8h" alt=""/></div>
+<map name="queue_8h" id="queue_8h">
+<area shape="rect" title="抽象队列" alt="" coords="5,5,73,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,73,107"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="queue_8h__dep__incl.png" border="0" usemap="#queue_8hdep" alt=""/></div>
+<map name="queue_8hdep" id="queue_8hdep">
+<area shape="rect" title="抽象队列" alt="" coords="281,5,349,32"/>
+<area shape="rect" href="error_8h.html" title=" " alt="" coords="116,80,175,107"/>
+<area shape="rect" href="calc_8c.html" title=" " alt="" coords="117,229,174,256"/>
+<area shape="rect" href="queue_8c.html" title=" " alt="" coords="317,80,385,107"/>
+<area shape="rect" href="test_queue_8c.html" title=" " alt="" coords="409,80,503,107"/>
+<area shape="rect" href="calc_8h.html" title=" " alt="" coords="50,155,107,181"/>
+<area shape="rect" href="main_8c.html" title="Project 1 – 中缀计算器" alt="" coords="5,229,67,256"/>
+<area shape="rect" href="error_8c.html" title=" " alt="" coords="183,155,241,181"/>
+</map>
+</div>
+</div>
+<p><a href="queue_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structqueue__info.html">queue_info</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a6cffe1e1c832f13245e02bfbb995d44a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a6cffe1e1c832f13245e02bfbb995d44a">NULL_QUEUE</a>&#160;&#160;&#160;((<a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a>){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})</td></tr>
+<tr class="memdesc:a6cffe1e1c832f13245e02bfbb995d44a"><td class="mdescLeft">&#160;</td><td class="mdescRight">NULL_QUEUE 空队列 一个无内容的队列,用于表示队列生成错误等  <a href="queue_8h.html#a6cffe1e1c832f13245e02bfbb995d44a">更多...</a><br /></td></tr>
+<tr class="separator:a6cffe1e1c832f13245e02bfbb995d44a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b40960c9c447f8b50dcc2bf22d522dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a0b40960c9c447f8b50dcc2bf22d522dd">POP_IN_EMPTY_QUEUE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a0b40960c9c447f8b50dcc2bf22d522dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">POP_IN_EMPTY_QUEUE 标识在空队列中pop的错误  <a href="queue_8h.html#a0b40960c9c447f8b50dcc2bf22d522dd">更多...</a><br /></td></tr>
+<tr class="separator:a0b40960c9c447f8b50dcc2bf22d522dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd6eb86d01fdf9f09bc47861ca0f227"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a4bd6eb86d01fdf9f09bc47861ca0f227">newQueue</a>(type)&#160;&#160;&#160;<a class="el" href="queue_8c.html#ab986a7d5029a43607cbf0946cc50c295">queueInit</a>(sizeof(type))</td></tr>
+<tr class="separator:a4bd6eb86d01fdf9f09bc47861ca0f227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a3c2b1c54dad6599d20dc7ab76930ac14"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a3c2b1c54dad6599d20dc7ab76930ac14">List</a></td></tr>
+<tr class="separator:a3c2b1c54dad6599d20dc7ab76930ac14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa31544b2d09d4f7dcac7e1ff67e10ad1"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structqueue__info.html">queue_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a></td></tr>
+<tr class="separator:aa31544b2d09d4f7dcac7e1ff67e10ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ab986a7d5029a43607cbf0946cc50c295"><td class="memItemLeft" align="right" valign="top"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#ab986a7d5029a43607cbf0946cc50c295">queueInit</a> (size_t size)</td></tr>
+<tr class="separator:ab986a7d5029a43607cbf0946cc50c295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>抽象队列 </p>
+<dl class="section author"><dt>作者</dt><dd>Locietta (defined QUEUE_H) This header defines an abstract queue</dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2020-05-09 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 中定义.</p>
+</div><h2 class="groupheader">宏定义说明</h2>
+<a id="a4bd6eb86d01fdf9f09bc47861ca0f227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bd6eb86d01fdf9f09bc47861ca0f227">&#9670;&nbsp;</a></span>newQueue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define newQueue</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="queue_8c.html#ab986a7d5029a43607cbf0946cc50c295">queueInit</a>(sizeof(type))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro: newQueue </p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Usage: myqueue = newQueue(double);</h2>
+<p>This function initialize a new queue with given type. In case of failure to build a queue, it returns a NULL_QUEUE </p>
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 第 <a class="el" href="queue_8h_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6cffe1e1c832f13245e02bfbb995d44a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cffe1e1c832f13245e02bfbb995d44a">&#9670;&nbsp;</a></span>NULL_QUEUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NULL_QUEUE&#160;&#160;&#160;((<a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a>){NULL, 0, -1, NULL, NULL, NULL, NULL, NULL, NULL, NULL})</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>NULL_QUEUE 空队列 一个无内容的队列,用于表示队列生成错误等 </p>
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 第 <a class="el" href="queue_8h_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0b40960c9c447f8b50dcc2bf22d522dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b40960c9c447f8b50dcc2bf22d522dd">&#9670;&nbsp;</a></span>POP_IN_EMPTY_QUEUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define POP_IN_EMPTY_QUEUE&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>POP_IN_EMPTY_QUEUE 标识在空队列中pop的错误 </p>
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 第 <a class="el" href="queue_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="a3c2b1c54dad6599d20dc7ab76930ac14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2b1c54dad6599d20dc7ab76930ac14">&#9670;&nbsp;</a></span>List</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_node.html">Node</a>* <a class="el" href="queue_8h.html#a3c2b1c54dad6599d20dc7ab76930ac14">List</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 第 <a class="el" href="queue_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa31544b2d09d4f7dcac7e1ff67e10ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa31544b2d09d4f7dcac7e1ff67e10ad1">&#9670;&nbsp;</a></span>queue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structqueue__info.html">queue_info</a> <a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="queue_8h_source.html">queue.h</a> 第 <a class="el" href="queue_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ab986a7d5029a43607cbf0946cc50c295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab986a7d5029a43607cbf0946cc50c295">&#9670;&nbsp;</a></span>queueInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="queue_8h.html#aa31544b2d09d4f7dcac7e1ff67e10ad1">queue</a> queueInit </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function: queueInit </p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Usage: you should use newQueue() instead.</h2>
+<p>This function initialize a queue. </p>
+
+<p class="definition">在文件 <a class="el" href="queue_8c_source.html">queue.c</a> 第 <a class="el" href="queue_8c_source.html#l00039">39</a> 行定义.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="queue_8h_ab986a7d5029a43607cbf0946cc50c295_cgraph.png" border="0" usemap="#queue_8h_ab986a7d5029a43607cbf0946cc50c295_cgraph" alt=""/></div>
+<map name="queue_8h_ab986a7d5029a43607cbf0946cc50c295_cgraph" id="queue_8h_ab986a7d5029a43607cbf0946cc50c295_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,80,184"/>
+<area shape="rect" href="queue_8c.html#a67c4213210f034ca42ab53537ba1eb67" title=" " alt="" coords="136,5,223,32"/>
+<area shape="rect" href="queue_8c.html#a4871f2d79e4c7e81aec10d43d5a11baa" title=" " alt="" coords="136,56,223,83"/>
+<area shape="rect" href="queue_8c.html#aa77e5aac67b8f33702cd9232f5c8c822" title=" " alt="" coords="128,107,231,133"/>
+<area shape="rect" href="queue_8c.html#a64a91462acde512962bf587f8290cb9b" title=" " alt="" coords="132,157,227,184"/>
+<area shape="rect" href="queue_8c.html#a82a0c5158e4b1fd4ddc02f17bf1ff1f6" title=" " alt="" coords="136,208,223,235"/>
+<area shape="rect" href="queue_8c.html#aaf426873a72bb5e10b3a666e83eeee03" title=" " alt="" coords="139,259,219,285"/>
+<area shape="rect" href="queue_8c.html#a4b8a2e6312537897c33b91d27121c8dc" title=" " alt="" coords="136,309,223,336"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>
