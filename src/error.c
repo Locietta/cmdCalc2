@@ -5,7 +5,7 @@
  * This source file implements the header error.h
  */
 
-#include "./include/error.h"
+#include "error.h"
 #include "color.h"
 
 /* Private Function Prototypes */
